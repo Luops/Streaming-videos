@@ -2,17 +2,14 @@ import styled from "styled-components";
 
 import { NavLink } from "react-router-dom";
 
-import { 
-    Container, 
-    Nav, 
-    Navbar, 
-    NavDropdown,
-    Form  
+import {
   } from 'react-bootstrap';
 
 
 export const StyledDiv = styled.div `
-    z-index: 0;
-    position: relative;
-    /*margin-top: -60px;*/
+    padding-top: 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `

@@ -12,9 +12,6 @@ import {
 
 
 export const StyledNavBar = styled(Navbar) `
-    background-color: transparent;
-    position: relative;
-    z-index: 1;
 `
 
 export const StyledNavDropdown = styled(NavDropdown) `
@@ -41,12 +38,16 @@ export const StyledBtnLink = styled(NavLink) `
         color: #001f21;
         background-color: white;
     }
+    @media (max-width: 991px) {
+        margin-top: 15px;
+    }
 `
 
 export const StyledForm = styled(Form) `
     border: 1px solid #ccc;
     border-radius: 3px;
-    width: 150px;
+    width: fit-content;
+    padding: 0 15px;
 `
 
 export const StyledInput = styled.input `
@@ -65,7 +66,6 @@ export const StyledButton = styled.button `
     border: none;
     background-color: transparent;
     border-radius: 0;
-
     i {
         display: flex;
     }

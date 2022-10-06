@@ -32,7 +32,7 @@ import BackgroundImage from '../../img/background.jpg'
 const Header = () => {
 
   return (
-    <StyledNavBar collapseOnSelect expand="lg" className="w-100">
+    <StyledNavBar collapseOnSelect expand="lg" className="w-100 bg-transparent position-fixed">
     <Container>
       <Navbar.Brand>
         <StyledNavLink to="/">Teste</StyledNavLink>
@@ -91,7 +91,7 @@ const Header = () => {
         </Nav>
       </Navbar.Collapse>
       <Navbar.Collapse id="responsive-navbar-nav" className="gap-4">
-        <StyledForm className="d-flex">
+        <StyledForm className="d-flex bg-white">
           <StyledInput 
             type="text" 
             placeholder="Pesquisar"

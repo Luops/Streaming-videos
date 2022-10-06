@@ -9,10 +9,3 @@ import {
     NavDropdown,
     Form  
   } from 'react-bootstrap';
-
-
-export const StyledDiv = styled.div `
-    z-index: 0;
-    position: relative;
-    /*margin-top: -60px;*/
-`

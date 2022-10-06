@@ -24,7 +24,10 @@ import Mf03 from './pages/Estacao/MF03/Mf03';
 import Mf05 from './pages/Estacao/MF05/Mf05';
 
 //Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css' ;
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { 
+  Container, 
+} from 'react-bootstrap';
 
 
 function App() {
@@ -33,7 +36,7 @@ function App() {
      <BrowserRouter>
      <Navbar/>
       {/*Validar as páginas, "Routes"*/}
-      <div>
+      <Container>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -46,7 +49,7 @@ function App() {
           <Route path="/processo/bobinagem" element={<Bobinagem />} />
           <Route path="/processo/montagemfinal" element={<MontagemFinal />} />
         </Routes>
-      </div>
+      </Container>
       <Footer/>
      </BrowserRouter>
     </div>
