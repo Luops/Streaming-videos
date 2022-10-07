@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 
 import { NavLink } from "react-router-dom";
 
+//hooks
+import { useAuthentication } from '../../hooks/useAuthentication';
+
+//Context
+import { useAuthValue } from '../../context/AuthContext';
+
 //Styled components
 import { 
   StyledNavLink,
@@ -30,6 +36,8 @@ import { FaSearch } from 'react-icons/fa'
 import BackgroundImage from '../../img/background.jpg'
 
 const Header = () => {
+  const {user} = useAuthValue();
+  const {logout} = useAuthentication();
 
   return (
     <StyledNavBar collapseOnSelect expand="lg" className="w-100 bg-transparent position-fixed">
@@ -103,9 +111,26 @@ const Header = () => {
           </StyledButton>
         </StyledForm>
         <Nav>
-          <StyledBtnLink to="/login" className="btn btn-secondary btn-md active" role="button" aria-pressed="true">
-            Login
-          </StyledBtnLink>
+          {!user && (
+            <StyledBtnLink to="/login" className="btn btn-secondary btn-md active" role="button" aria-pressed="true">
+              Login
+            </StyledBtnLink>
+          )}
+          {/*Colocar aqui a opção de dropdown após estar autenticado.
+            Upar videos entre outras coisas.
+          */}
+          {user && (
+            <StyledBtnLink to="/login" 
+            className="btn btn-secondary btn-md active" 
+            role="button" 
+            aria-pressed="true"
+            onClick={logout}
+            >
+              Logout
+            </StyledBtnLink>
+          )}
+          
+          
         </Nav>
       </Navbar.Collapse>
     </Container>

@@ -2,8 +2,12 @@ import React from 'react'
 
 //Styled components
 import { 
-  StyledDiv
+  
 } from "./styles"
+
+import { 
+  StyledDiv
+} from "../stylesGeral"
 
 //Bootstrap
 import { } from 'react-bootstrap';
