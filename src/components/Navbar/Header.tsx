@@ -16,7 +16,9 @@ import {
   StyledBtnLink,
   StyledInput,
   StyledButton,
-  StyledForm
+  StyledForm,
+  StyledDivUser,
+  IconUser
 } from "./styles"
 
 //Bootstrap
@@ -40,7 +42,7 @@ const Header = () => {
   const {logout} = useAuthentication();
 
   return (
-    <StyledNavBar collapseOnSelect expand="lg" className="w-100 bg-transparent position-fixed">
+  <StyledNavBar collapseOnSelect expand="lg" className="w-100 bg-transparent position-fixed">
     <Container>
       <Navbar.Brand>
         <StyledNavLink to="/">Teste</StyledNavLink>
@@ -116,21 +118,37 @@ const Header = () => {
               Login
             </StyledBtnLink>
           )}
-          {/*Colocar aqui a opção de dropdown após estar autenticado.
-            Upar videos entre outras coisas.
-          */}
-          {user && (
-            <StyledBtnLink to="/login" 
-            className="btn btn-secondary btn-md active" 
-            role="button" 
-            aria-pressed="true"
-            onClick={logout}
-            >
-              Logout
-            </StyledBtnLink>
-          )}
           
-          
+          <div className="d-flex direction-row">
+            {user && (
+              <IconUser/>
+            )}
+            
+            {user && (
+              <StyledDivUser title="" id="collasible-nav-dropdown" drop="start">
+                <NavDropdown.Item>
+                  <StyledNavLink to="/adicionar/videonuvem">
+                    Adicionar vídeo à Nuvem
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/adicionar/conteudo">
+                    Adicionar conteúdo
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledBtnLink to="/login" 
+                    className="btn btn-secondary btn-md active" 
+                    role="button" 
+                    aria-pressed="true"
+                    onClick={logout}
+                  >
+                    Logout
+                  </StyledBtnLink>
+                </NavDropdown.Item>
+              </StyledDivUser>
+            )}
+          </div>
         </Nav>
       </Navbar.Collapse>
     </Container>

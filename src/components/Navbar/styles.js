@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import { NavLink } from "react-router-dom";
 
+import tdkIcon from "../../img/logo-pequeno.png"
+
 import { 
     Container, 
     Nav, 
@@ -12,6 +14,9 @@ import {
 
 
 export const StyledNavBar = styled(Navbar) `
+    @media (max-width: 991px) {
+        background-color: white !important;
+    }
 `
 
 export const StyledNavDropdown = styled(NavDropdown) `
@@ -70,3 +75,18 @@ export const StyledButton = styled.button `
         display: flex;
     }
 `
+
+export const StyledDivUser = styled(NavDropdown) `
+    @media (max-width: 991px) {
+        margin-left: 2px;
+    }
+`
+
+export const IconUser = styled.div `
+    width: 30px;
+    height: 30px;
+    background-image: url(${tdkIcon});
+    background-size: cover;
+    margin-top: 5px;
+`
+

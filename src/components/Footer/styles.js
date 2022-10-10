@@ -9,3 +9,8 @@ import {
     NavDropdown,
     Form  
   } from 'react-bootstrap';
+
+export const Div = styled.div`
+  z-index:0;
+  position: relative;
+`

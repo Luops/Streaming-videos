@@ -29,12 +29,16 @@ import MontagemFinal from './pages/Processo/MontagemFinal/MontagemFinal';
 import Mf02 from './pages/Estacao/MF02/Mf02';
 import Mf03 from './pages/Estacao/MF03/Mf03';
 import Mf05 from './pages/Estacao/MF05/Mf05';
+import Conteudo from './pages/Adicionar/Conteudo/Conteudo';
+import Video from './pages/Adicionar/VideoNuvem/Video';
 
 //Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { 
   Container, 
 } from 'react-bootstrap';
+
+
 
 
 function App() {
@@ -71,6 +75,8 @@ function App() {
             <Route path="/estacao/mf05" element={user ? <Mf05 /> : <Navigate to="/login"/>} />
             <Route path="/processo/bobinagem" element={user ? <Bobinagem /> : <Navigate to="/login"/> } />
             <Route path="/processo/montagemfinal" element={user ? <MontagemFinal /> : <Navigate to="/login"/>} />
+            <Route path="/adicionar/conteudo" element={user ? <Conteudo /> : <Navigate to="/login"/>} />
+            <Route path="/adicionar/videonuvem" element={user ? <Video /> : <Navigate to="/login"/>} />
           </Routes>
         </div>
         {user ? <Footer/> : ""}

@@ -103,10 +103,9 @@ const Login = () => {
           required/>
         </StyledLabel>
         {!loading &&<StyledButton>Entrar</StyledButton>}
-        
+        {loading &&<StyledButton>Entrando...</StyledButton>}
         {error && <p className="">{error}</p>}
       </StyledForm>
-      
     </StyledDivLogin>
   )
 }

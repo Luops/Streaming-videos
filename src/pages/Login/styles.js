@@ -30,7 +30,7 @@ export const StyledLabel = styled.label `
 export const StyledForm = styled.form `
     width:60%;
     height: 100%;
-    padding-top: 120px;
+    padding-top: 8%;
     color: rgba(0,69,177,0.8);
 `
 
@@ -76,7 +76,7 @@ export const StyledH1 = styled.h1 `
     font-weight: bold;
     color: white;
     font-size: 3em;
-    margin-bottom: 20px;
+    margin-bottom: 3%;
 `
 
 export const StyledH3 = styled.h3 `
@@ -90,7 +90,7 @@ export const StyledH4 = styled.h4 `
     font-size: 3em;
     text-transform: uppercase;
     font-weight: bold;
-    margin-bottom: 60px;
+    margin-bottom: 5%;
     font-family: 'inder';
 `
 
@@ -98,7 +98,7 @@ export const StyledButton = styled.button `
     font-size: 1em;
     text-transform: uppercase;
     font-weight: bold;
-    margin-top: 30px;
+    margin-top: 4%;
     width: 45%;
     border-radius: 20px;
     background-color: rgba(0,69,177,0.8);
