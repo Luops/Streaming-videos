@@ -14,5 +14,9 @@ import {
 export const StyledDiv = styled.div `
     z-index: 0;
     position: relative;
-    /*margin-top: -60px;*/
+`
+
+export const Videos = styled.div `
+    display: flex;
+    flex-wrap: wrap;
 `

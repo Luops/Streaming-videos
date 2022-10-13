@@ -1,6 +1,6 @@
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import React, {useState} from 'react'
-import { storage } from '../../../firebase/config';
+import { storage } from '../../../../firebase/config';
 
 //Icones
 import { FaFileUpload } from "react-icons/fa"
@@ -8,7 +8,7 @@ import { FaFileUpload } from "react-icons/fa"
 //Styled components
 import {
   StyledDiv
-} from "../../stylesGeral"
+} from "../../../stylesGeral"
 
 //Styled components
 import {
@@ -38,7 +38,7 @@ export const Video = () => {
     uploadTask.on(
       "state_changed",
       snapshot => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
         setProgress(progress)
       },
       error => {
@@ -52,6 +52,8 @@ export const Video = () => {
     )
   }
 
+  console.log(videoURL)
+
   return (
     <StyledDivVideo>
       <Div className='d-flex flex-column align-items-center justify-content-center'>
@@ -60,7 +62,7 @@ export const Video = () => {
             <FaFileUpload/>
           </i>
           <p className="text-center">Selecione abaixo um video em seu computador para envia-lo à nuvem do Firebase.</p>
-          <form onSubmit={handleUploadVideo} 
+          <form onSubmit={handleUploadVideo}
           className='w-100 d-flex flex-column align-items-center justify-content-center my-0 gap-5'> 
             {!videoURL && <StyledUpload className="btn btn-primary">
               <label htmlFor="video">Selecionar video</label>
@@ -73,7 +75,10 @@ export const Video = () => {
             {videoURL && <button type="submit" className="btn btn-primary d-none">Enviar</button>}
             {!videoURL && <button type="submit" className="btn btn-primary">Enviar</button>}
           </form>
-          {!videoURL && <progress className="progress-bar w-50 my-2" role="progressbar" value={progress} max="100"/>}
+          <div className='d-flex flex-column w-50 align-items-center'>
+            {!videoURL && <progress className="progress-bar w-100 my-2" role="progressbar" value={progress} max="100"/>}
+            {!videoURL && <h3 role="progressbar">{progress}%</h3>}
+          </div>
           {videoURL && <video src={videoURL} width="200px" className="my-2"/>}
           {videoURL && <h3 className="p-3 w-100 text-center bg-light border-top text-success">Enviado com sucesso</h3>}
       </Div>

@@ -14,13 +14,11 @@ import {
 
 
 export const StyledDivVideo = styled(StyledDiv)`
-    height: 85vh;
-    z-index: 2;
-    position: relative;
+margin-bottom: 15px;
 `
 
 export const Div = styled.div `
-    margin-top: 7%;
+    margin-top: 2%;
     background-color: white;
     width: 70%;
     -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.5); 
@@ -39,3 +37,8 @@ export const StyledUpload = styled.div`
         display: block;
     }
 `
+
+export const StyledTextArea = styled.textarea`
+    height: 200px;
+`
+

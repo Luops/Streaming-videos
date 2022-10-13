@@ -127,13 +127,8 @@ const Header = () => {
             {user && (
               <StyledDivUser title="" id="collasible-nav-dropdown" drop="start">
                 <NavDropdown.Item>
-                  <StyledNavLink to="/adicionar/videonuvem">
-                    Adicionar vídeo à Nuvem
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
                   <StyledNavLink to="/adicionar/conteudo">
-                    Adicionar conteúdo
+                    ADICIONAR CONTEÚDO
                   </StyledNavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
