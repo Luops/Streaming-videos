@@ -42,6 +42,7 @@ const Header = () => {
   const [query, setQuery] = useState("");
   const {user} = useAuthValue();
   const {logout} = useAuthentication();
+  const [navBar, setNavBar] = useState(false)
 
   const navigate = useNavigate()
 
@@ -53,8 +54,17 @@ const Header = () => {
     }
   }
 
+  const changeBackground = () => {
+    if(window.scrollY >= 60) {
+      setNavBar(true) 
+    } else {
+      setNavBar(false)
+    }
+  }
+  window.addEventListener('scroll', changeBackground)
+
   return (
-  <StyledNavBar collapseOnSelect expand="lg" className="w-100 bg-transparent position-fixed">
+  <StyledNavBar collapseOnSelect expand="lg" className={navBar ? "w-100 bg-white position-fixed" : "w-100 bg-transparent position-fixed"}>
     <Container>
       <Navbar.Brand>
         <StyledNavLink to="/">
