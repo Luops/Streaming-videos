@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 //hooks
 import { useAuthentication } from '../../hooks/useAuthentication';
@@ -36,16 +36,30 @@ import { FaSearch } from 'react-icons/fa'
 
 //Imagens
 import BackgroundImage from '../../img/background.jpg'
+import Logo from '../../img/Logo-navbar.png'
 
 const Header = () => {
+  const [query, setQuery] = useState("");
   const {user} = useAuthValue();
   const {logout} = useAuthentication();
+
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    if(query) {
+      return navigate(`/search?q=${query}`)
+    }
+  }
 
   return (
   <StyledNavBar collapseOnSelect expand="lg" className="w-100 bg-transparent position-fixed">
     <Container>
       <Navbar.Brand>
-        <StyledNavLink to="/">Teste</StyledNavLink>
+        <StyledNavLink to="/">
+          <img src={Logo} alt="" width="50" />
+        </StyledNavLink>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-center w-100 gap-4" >
@@ -101,10 +115,11 @@ const Header = () => {
         </Nav>
       </Navbar.Collapse>
       <Navbar.Collapse id="responsive-navbar-nav" className="gap-4">
-        <StyledForm className="d-flex bg-white">
+        <StyledForm onSubmit={handleSubmit} className="d-flex bg-white">
           <StyledInput 
             type="text" 
             placeholder="Pesquisar"
+            onChange={(e) => setQuery(e.target.value)}
             autoFocus={true}/>
           <StyledButton>
             <i>
@@ -127,7 +142,7 @@ const Header = () => {
             {user && (
               <StyledDivUser title="" id="collasible-nav-dropdown" drop="start">
                 <NavDropdown.Item>
-                  <StyledNavLink to="/adicionar/conteudo">
+                  <StyledNavLink to="/adicionar/video">
                     ADICIONAR CONTEÚDO
                   </StyledNavLink>
                 </NavDropdown.Item>

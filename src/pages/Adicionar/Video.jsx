@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { getStorage, ref, listAll, list, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { dbFire, listarItens, storage } from '../../../firebase/config';
+import { dbFire, listarItens, storage } from '../../firebase/config';
 import { addDoc, collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,10 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
 //Hooks
-import { useInsertDocument } from '../../../hooks/useInsertDocument';
+import { useInsertDocument } from '../../hooks/useInsertDocument';
 
 //Context
-import { useAuthValue } from '../../../context/AuthContext';
+import { useAuthValue } from '../../context/AuthContext';
 
 //Icones
 import { FaFileUpload } from "react-icons/fa"
@@ -19,7 +19,7 @@ import { FaFileUpload } from "react-icons/fa"
 //Styled components
 import {
   StyledDiv
-} from "../../stylesGeral"
+} from "../stylesGeral"
 
 //Styled components
 import {
@@ -147,15 +147,15 @@ export const Conteudo = () => {
               <label htmlFor="video">Selecionar video</label>
               <input type="file" name="video" id="video"/>
             </StyledUpload>}
-            {videoURL && <button type="submit" className="btn btn-primary d-none">Enviar</button>}
-            {!videoURL && <button type="submit" className="btn btn-primary">Enviar</button>}
+            {videoURL && <button type="submit" className="btn btn-success d-none">Anexado</button>}
+            {!videoURL && <button type="submit" className="btn btn-primary">Anexar</button>}
           </form>
           <div className='d-flex flex-column w-50 align-items-center'>
             {!videoURL && <progress className="progress-bar w-100 my-2" role="progressbar" value={progressVideo} max="100"/>}
             {!videoURL && <h3 role="progressbar">{progressVideo}%</h3>}
           </div>
           {videoURL && <video src={videoURL} width="200px" className="my-2"/>}
-          {videoURL && <h3 className="p-3 w-100 text-center bg-light border-top text-success">Enviado com sucesso</h3>}
+          {videoURL && <h3 className="p-3 w-100 text-center bg-light border-top text-success">Anexado com sucesso</h3>}
       </Div>
 
       {/*Formulario somente da imagem*/}
@@ -175,15 +175,15 @@ export const Conteudo = () => {
               <label htmlFor="imagem">Selecionar imagem</label>
               <input type="file" name="imagem" id="imagem"/>
             </StyledUpload>}
-            {imagem && <button type="submit" className="btn btn-primary d-none">Enviar</button>}
-            {!imagem && <button type="submit" className="btn btn-primary">Enviar</button>}
+            {imagem && <button type="submit" className="btn btn-success d-none">Anexado</button>}
+            {!imagem && <button type="submit" className="btn btn-primary">Anexar</button>}
           </form>
           <div className='d-flex flex-column w-50 align-items-center'>
             {!imagem && <progress className="progress-bar bg-blue w-100 my-2" role="progressbar" value={progressImagem} max="100"/>}
             {!imagem && <h3 role="progressbar">{progressImagem}%</h3>}
           </div>
           {imagem && <video src={imagem} width="200px" className="my-2"/>}
-          {imagem && <h3 className="p-3 w-100 text-center bg-light border-top text-success">Enviado com sucesso</h3>}
+          {imagem && <h3 className="p-3 w-100 text-center bg-light border-top text-success">Anexado com sucesso</h3>}
       </Div>
 
       {/*Formulario descricao*/}

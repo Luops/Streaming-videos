@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 //hooks
 
@@ -22,7 +22,9 @@ import { FaHistory } from "react-icons/fa"
 const DetalhesConteudo = ({conteudo}:any) => {
   return (
     <Component>
-      <Imagem src={conteudo.imagem} alt={conteudo.titulo} />
+      <Link to={`/conteudo/${conteudo.id}`}>
+        <Imagem src={conteudo.imagem} alt={conteudo.titulo} />
+      </Link>
       <h3 className="fs-5 fw-normal ">{conteudo.titulo}</h3>
       <div className="w-100 d-flex justify-content-between align-center">
         <h3 className="fs-6 fw-bold gap-2 text-uppercase text-primary">{conteudo.estacao}</h3>
