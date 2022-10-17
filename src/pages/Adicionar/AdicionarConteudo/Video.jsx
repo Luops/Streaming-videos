@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { getStorage, ref, listAll, list, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { dbFire, listarItens, storage } from '../../firebase/config';
+import { dbFire, listarItens, storage } from '../../../firebase/config';
 import { addDoc, collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,10 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
 //Hooks
-import { useInsertDocument } from '../../hooks/useInsertDocument';
+import { useInsertDocument } from '../../../hooks/useInsertDocument';
 
 //Context
-import { useAuthValue } from '../../context/AuthContext';
+import { useAuthValue } from '../../../context/AuthContext';
 
 //Icones
 import { FaFileUpload } from "react-icons/fa"
@@ -19,7 +19,7 @@ import { FaFileUpload } from "react-icons/fa"
 //Styled components
 import {
   StyledDiv
-} from "../stylesGeral"
+} from "../../stylesGeral"
 
 //Styled components
 import {

@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 
-
 //Hooks
 import { useFetchDocuments } from "../../hooks/useFetchDocuments"
 
 //Styled components
 import { 
-  Videos
+  Videos,
+  Destaque
 } from "./styles"
 
 import { 
@@ -24,7 +24,9 @@ const Home = () => {
 
   return (
     <StyledDiv>
-      Home
+      <Destaque>
+
+      </Destaque>
       <Videos className='justify-content-center gap-5 w-100 p-1'>
       {conteudo && conteudo.map((conteudo) => (
         <DetalhesConteudo key={conteudo.id} conteudo={conteudo}/>

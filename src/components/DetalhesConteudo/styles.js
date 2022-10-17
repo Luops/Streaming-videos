@@ -18,7 +18,7 @@ export const Component = styled.div `
 `
 
 export const Imagem = styled.img `
-    max-width: 320px;
+    width: 320px;
     height: 450px;
     background-size: cover;
     background-repeat: no-repeat;

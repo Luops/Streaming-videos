@@ -18,7 +18,7 @@ import {
   StyledButton,
   StyledForm,
   StyledDivUser,
-  IconUser
+  IconUser,
 } from "./styles"
 
 //Bootstrap
@@ -37,6 +37,7 @@ import { FaSearch } from 'react-icons/fa'
 //Imagens
 import BackgroundImage from '../../img/background.jpg'
 import Logo from '../../img/Logo-navbar.png'
+import LogoPreto from '../../img/Logo-navbar-preto.png'
 
 const Header = () => {
   const [query, setQuery] = useState("");
@@ -64,16 +65,16 @@ const Header = () => {
   window.addEventListener('scroll', changeBackground)
 
   return (
-  <StyledNavBar collapseOnSelect expand="lg" className={navBar ? "w-100 bg-white position-fixed" : "w-100 bg-transparent position-fixed"}>
+  <StyledNavBar collapseOnSelect expand="lg" className={navBar ? "w-100 bg-primary position-fixed" : "w-100 bg-transparent position-fixed"}>
     <Container>
       <Navbar.Brand>
         <StyledNavLink to="/">
-          <img src={Logo} alt="" width="50" />
+          <img src={navBar ? LogoPreto : Logo} alt="" width="50" />
         </StyledNavLink>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-center w-100 gap-4" >
-        <StyledNavLink to="/" className="">
+        <StyledNavLink to="/">
           Home
         </StyledNavLink>
         <Nav>
@@ -125,12 +126,13 @@ const Header = () => {
         </Nav>
       </Navbar.Collapse>
       <Navbar.Collapse id="responsive-navbar-nav" className="gap-4">
-        <StyledForm onSubmit={handleSubmit} className="d-flex bg-white">
+        <StyledForm onSubmit={handleSubmit} className={navBar ? "d-flex bg-transparent border border-dark" : "d-flex bg-transparent"}>
           <StyledInput 
             type="text" 
             placeholder="Pesquisar"
             onChange={(e) => setQuery(e.target.value)}
-            autoFocus={true}/>
+            autoFocus={true}
+            className={navBar ? "bg-transparent text-black" : "bg-transparent"}/>
           <StyledButton>
             <i>
               <FaSearch/>
@@ -152,8 +154,13 @@ const Header = () => {
             {user && (
               <StyledDivUser title="" id="collasible-nav-dropdown" drop="start">
                 <NavDropdown.Item>
-                  <StyledNavLink to="/adicionar/video">
+                  <StyledNavLink to="/adicionar/adicionarConteudo">
                     ADICIONAR CONTEÚDO
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/adicionar/adicionarDestaque">
+                    ADICIONAR DESTAQUE
                   </StyledNavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Item>

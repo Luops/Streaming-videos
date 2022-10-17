@@ -9,7 +9,7 @@ import {
 
 import {
     StyledDiv
-} from "../stylesGeral.js"
+} from "../../stylesGeral.js"
 
 
 

@@ -14,6 +14,8 @@ import {
 
 
 export const StyledNavBar = styled(Navbar) `
+    z-index: 2;
+    transition: .2s ease-in-out;
     @media (max-width: 991px) {
         background-color: white !important;
     }
@@ -21,7 +23,6 @@ export const StyledNavBar = styled(Navbar) `
 
 export const StyledNavDropdown = styled(NavDropdown) `
     font-weight: bold;
-    color: #001f21 !important;
 `
 
 export const StyledNavLink = styled(NavLink) `
@@ -52,7 +53,7 @@ export const StyledForm = styled(Form) `
     border: 1px solid #ccc;
     border-radius: 3px;
     width: fit-content;
-    padding: 0 15px;
+    padding: 0 15px;-color: black;
 `
 
 export const StyledInput = styled.input `
@@ -63,6 +64,9 @@ export const StyledInput = styled.input `
     &:focus {
         border: none;
         outline: none;
+    }
+    &::placeholder {
+        color: black;
     }
 
 `
@@ -89,4 +93,6 @@ export const IconUser = styled.div `
     background-size: cover;
     margin-top: 5px;
 `
+
+
 

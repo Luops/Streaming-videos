@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { NavLink } from "react-router-dom";
 
+//Bootstrap
 import { 
     Container, 
     Nav, 
@@ -9,6 +10,9 @@ import {
     NavDropdown,
     Form  
   } from 'react-bootstrap';
+
+//Imagens
+import Background from "../../img/background2.png"
 
 
 export const StyledDiv = styled.div `
@@ -19,4 +23,12 @@ export const StyledDiv = styled.div `
 export const Videos = styled.div `
     display: flex;
     flex-wrap: wrap;
+`
+
+export const Destaque = styled.section `
+    background-image: url(${Background});
+    background-size: cover;
+    margin-top: -56px;
+    height: 100vh;
+    width: 100%;
 `

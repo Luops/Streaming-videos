@@ -29,7 +29,8 @@ import MontagemFinal from './pages/Processo/MontagemFinal/MontagemFinal';
 import Mf02 from './pages/Estacao/MF02/Mf02';
 import Mf03 from './pages/Estacao/MF03/Mf03';
 import Mf05 from './pages/Estacao/MF05/Mf05';
-import Adicionar from './pages/Adicionar/Video';
+import AdicionarVideo from './pages/Adicionar/AdicionarConteudo/Video';
+import AdicionarDestaque from './pages/Adicionar/AdicionarDestaque/Video';
 import Search from './pages/Search/Search';
 import Conteudo from './pages/Conteudo/Conteudo';
 
@@ -77,7 +78,8 @@ function App() {
             <Route path="/estacao/mf05" element={user ? <Mf05 /> : <Navigate to="/login"/>} />
             <Route path="/processo/bobinagem" element={user ? <Bobinagem /> : <Navigate to="/login"/> } />
             <Route path="/processo/montagemfinal" element={user ? <MontagemFinal /> : <Navigate to="/login"/>} />
-            <Route path="/adicionar/video" element={user ? <Adicionar /> : <Navigate to="/login"/>} />
+            <Route path="/adicionar/adicionarConteudo" element={user ? <AdicionarVideo /> : <Navigate to="/login"/>} />
+            <Route path="/adicionar/adicionarDestaque" element={user ? <AdicionarDestaque /> : <Navigate to="/login"/>} />
           </Routes>
         </div>
         {/*{user ? <Footer/> : ""}*/}
