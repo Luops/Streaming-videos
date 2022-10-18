@@ -6,11 +6,11 @@ import { useFetchDocument } from '../../hooks/useFetchDocument';
 
 //Styled components
 import { 
-  } from "./styles"
+  ConteudoContainer
+} from "./styles"
   
-  import { 
-    StyledDiv
-  } from "../stylesGeral"
+import { 
+} from "../stylesGeral"
   
 //Bootstrap
 import { } from 'react-bootstrap';
@@ -20,14 +20,14 @@ const Conteudo = () => {
     const { document: conteudo, loading} = useFetchDocument("conteudo", id)
 
   return (
-    <StyledDiv>
+    <ConteudoContainer>
         {loading && <p>Carregando conteudo!</p>}
         {conteudo && (
             <>
                 <h1>{conteudo.titulo}</h1>
             </>
         )}
-    </StyledDiv>
+    </ConteudoContainer>
   )
 }
 

@@ -1,6 +1,6 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 
 //hooks
 import { useAuthentication } from '../../hooks/useAuthentication';
@@ -19,6 +19,7 @@ import {
   StyledForm,
   StyledDivUser,
   IconUser,
+  StyledUl
 } from "./styles"
 
 //Bootstrap
@@ -44,6 +45,10 @@ const Header = () => {
   const {user} = useAuthValue();
   const {logout} = useAuthentication();
   const [navBar, setNavBar] = useState(false)
+  const [showDropDownProcesso, setShowDropDownProcesso] = useState(false)
+  const [showDropDownEstacao, setShowDropDownEstacao] = useState(false)
+
+  const paginaAtual = useLocation();
 
   const navigate = useNavigate()
 
@@ -61,125 +66,412 @@ const Header = () => {
     } else {
       setNavBar(false)
     }
+
   }
   window.addEventListener('scroll', changeBackground)
 
+
+
   return (
-  <StyledNavBar collapseOnSelect expand="lg" className={navBar ? "w-100 bg-primary position-fixed" : "w-100 bg-transparent position-fixed"}>
-    <Container>
-      <Navbar.Brand>
-        <StyledNavLink to="/">
-          <img src={navBar ? LogoPreto : Logo} alt="" width="50" />
-        </StyledNavLink>
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-center w-100 gap-4" >
-        <StyledNavLink to="/">
-          Home
-        </StyledNavLink>
-        <Nav>
-          <StyledNavDropdown title="Processo" id="collasible-nav-dropdown">
-            <NavDropdown.Item>
-              <StyledNavLink to="/processo/bobinagem">
-                Bobinagem
-              </StyledNavLink>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <StyledNavLink to="/processo/montagemfinal">
-                Montagem Final
-              </StyledNavLink>
-            </NavDropdown.Item>
-          </StyledNavDropdown>
-          <StyledNavDropdown title="Estações" id="collasible-nav-dropdown">
-            <NavDropdown.Item>
-              <StyledNavLink to="/estacao/bob09">
-                BOB09
-              </StyledNavLink>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <StyledNavLink to="/estacao/bob15">
-                BOB15
-              </StyledNavLink>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <StyledNavLink to="/estacao/bob17">
-                BOB17
-              </StyledNavLink>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <StyledNavLink to="/estacao/mf02">
-                MF02
-              </StyledNavLink>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <StyledNavLink to="/estacao/mf03">
-                MF03
-              </StyledNavLink>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <StyledNavLink to="/estacao/mf05">
-                MF05
-              </StyledNavLink>
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-          </StyledNavDropdown>
-        </Nav>
-      </Navbar.Collapse>
-      <Navbar.Collapse id="responsive-navbar-nav" className="gap-4">
-        <StyledForm onSubmit={handleSubmit} className={navBar ? "d-flex bg-transparent border border-dark" : "d-flex bg-transparent"}>
-          <StyledInput 
-            type="text" 
-            placeholder="Pesquisar"
-            onChange={(e) => setQuery(e.target.value)}
-            autoFocus={true}
-            className={navBar ? "bg-transparent text-black" : "bg-transparent"}/>
-          <StyledButton>
-            <i>
-              <FaSearch/>
-            </i>
-          </StyledButton>
-        </StyledForm>
-        <Nav>
-          {!user && (
-            <StyledBtnLink to="/login" className="btn btn-secondary btn-md active" role="button" aria-pressed="true">
-              Login
-            </StyledBtnLink>
-          )}
-          
-          <div className="d-flex direction-row">
-            {user && (
-              <IconUser/>
-            )}
-            
-            {user && (
-              <StyledDivUser title="" id="collasible-nav-dropdown" drop="start">
+  
+  <div>
+    {paginaAtual.pathname === "/" && (
+      <StyledNavBar collapseOnSelect expand="lg" className={navBar ? "w-100 bg-primary position-fixed" : "w-100 bg-transparent position-fixed"}>
+        <Container>
+          <Navbar.Brand className="d-flex align-items-center">
+            <NavLink to="/" onClick={() => {showDropDownEstacao(true); showDropDownProcesso(true);}}>
+              <img src={navBar ? LogoPreto : Logo} alt="" width="40" />
+            </NavLink>
+            <h1 className="text-white text-bold font-weight-bold text-uppercase mt-1">tdk</h1>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-center w-100 gap-4" >
+            <NavLink to="/" className="text-white text-decoration-none font-weight-bold" onClick={() => {
+              showDropDownEstacao(true);
+              showDropDownProcesso(true);
+              }}>
+              <h6>Home</h6>
+            </NavLink>
+            <Nav>
+              {/* Processo */}
+              <div className='dropdown'>
+                <button className='btn text-white border-0 dropdown-toggle font-weight-bold d-flex align-items-center' 
+                data-bs-toggle="dropdown" 
+                onClick={() => {
+                setShowDropDownProcesso(!showDropDownProcesso);
+                setShowDropDownEstacao(false);}}
+                >
+                  <h6>Processo</h6>
+                </button>
+                <StyledUl className={showDropDownProcesso ? "d-flex position-absolute bg-white text-black flex-column" : "d-none"}>
+                  <StyledNavLink to="/processo/bobinagem" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      Bobinagem
+                  </StyledNavLink>
+                  <StyledNavLink to="/processo/montagemfinal" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      Montagem Final
+                  </StyledNavLink>
+                </StyledUl>
+              </div>
+              {/* Estações */}
+              <div className='dropdown'>
+                <button className='btn text-white border-0 dropdown-toggle font-weight-bold d-flex align-items-center' 
+                data-bs-toggle="dropdown" 
+                onClick={() => {
+                setShowDropDownEstacao(!showDropDownEstacao);
+                setShowDropDownProcesso(false);}}
+                >
+                  <h6>Estações</h6>
+                </button>
+                <StyledUl className={showDropDownEstacao ? "d-flex position-absolute bg-white text-black flex-column" : "d-none"}>
+                  <StyledNavLink to="/estacao/bob09" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      BOB09
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/bob15" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      BOB15
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/bob16" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      BOB16
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/mf02" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      MF02
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/mf03" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      MF03
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/mf05" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      MF05
+                  </StyledNavLink>
+                </StyledUl>
+              </div>
+              {/* 
+              <StyledNavDropdown title="Processo" id="collasible-nav-dropdown"  className="d-block">
                 <NavDropdown.Item>
-                  <StyledNavLink to="/adicionar/adicionarConteudo">
-                    ADICIONAR CONTEÚDO
+                  <StyledNavLink to="/processo/bobinagem">
+                    Bobinagem
                   </StyledNavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <StyledNavLink to="/adicionar/adicionarDestaque">
-                    ADICIONAR DESTAQUE
+                  <StyledNavLink to="/processo/montagemfinal">
+                    Montagem Final
+                  </StyledNavLink>
+                </NavDropdown.Item>
+              </StyledNavDropdown>
+              
+              <StyledNavDropdown title="Estações" id="collasible-nav-dropdown">
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/bob09">
+                    BOB09
                   </StyledNavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Item>
-                  <StyledBtnLink to="/login" 
-                    className="btn btn-secondary btn-md active" 
-                    role="button" 
-                    aria-pressed="true"
-                    onClick={logout}
-                  >
-                    Logout
-                  </StyledBtnLink>
+                  <StyledNavLink to="/estacao/bob15">
+                    BOB15
+                  </StyledNavLink>
                 </NavDropdown.Item>
-              </StyledDivUser>
-            )}
-          </div>
-        </Nav>
-      </Navbar.Collapse>
-    </Container>
-  </StyledNavBar>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/bob17">
+                    BOB17
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/mf02">
+                    MF02
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/mf03">
+                    MF03
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/mf05">
+                    MF05
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+              </StyledNavDropdown>
+              */}
+            </Nav>
+          </Navbar.Collapse>
+          <Navbar.Collapse id="responsive-navbar-nav" className="gap-4">
+            <StyledForm onSubmit={handleSubmit} className="d-flex bg-white border border-dark">
+              <StyledInput 
+                type="text" 
+                placeholder="Pesquisar"
+                onChange={(e) => setQuery(e.target.value)}
+                autoFocus={true}
+                className={navBar ? "bg-transparent text-black" : "bg-transparent"}/>
+              <StyledButton>
+                <i>
+                  <FaSearch/>
+                </i>
+              </StyledButton>
+            </StyledForm>
+            <Nav>
+              {!user && (
+                <StyledBtnLink to="/login" className="btn btn-secondary btn-md active" role="button" aria-pressed="true">
+                  Login
+                </StyledBtnLink>
+              )}
+              
+              <div className="d-flex direction-row">
+                {user && (
+                  <IconUser/>
+                )}
+                
+                {user && (
+                  <StyledDivUser title="" id="collasible-nav-dropdown" drop="start">
+                    <NavDropdown.Item>
+                      <StyledNavLink to="/adicionar/adicionarConteudo">
+                        ADICIONAR CONTEÚDO
+                      </StyledNavLink>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <StyledNavLink to="/adicionar/adicionarDestaque">
+                        ADICIONAR DESTAQUE
+                      </StyledNavLink>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <StyledBtnLink to="/login" 
+                        className="btn btn-secondary btn-md active" 
+                        role="button" 
+                        aria-pressed="true"
+                        onClick={logout}
+                      >
+                        Logout
+                      </StyledBtnLink>
+                    </NavDropdown.Item>
+                  </StyledDivUser>
+                )}
+              </div>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </StyledNavBar>
+    )}
+    {paginaAtual.pathname !== "/" && (
+      <StyledNavBar collapseOnSelect expand="lg" className={"w-100 bg-primary position-fixed"}>
+        <Container>
+          <Navbar.Brand className="d-flex align-items-center">
+            <NavLink to="/" onClick={() => {showDropDownEstacao(true); showDropDownProcesso(true);}}>
+              <img src={navBar ? LogoPreto : Logo} alt="" width="40" />
+            </NavLink>
+            <h1 className="text-white text-bold font-weight-bold text-uppercase mt-1">tdk</h1>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-center w-100 gap-4" >
+            <NavLink to="/" className="text-white text-decoration-none font-weight-bold" onClick={() => {
+              showDropDownEstacao(true);
+              showDropDownProcesso(true);
+              }}>
+              <h6>Home</h6>
+            </NavLink>
+            <Nav>
+              {/* Processo */}
+              <div className='dropdown'>
+                <button className='btn text-white border-0 dropdown-toggle font-weight-bold d-flex align-items-center' 
+                data-bs-toggle="dropdown" 
+                onClick={() => {
+                setShowDropDownProcesso(!showDropDownProcesso);
+                setShowDropDownEstacao(false);}}
+                >
+                  <h6>Processo</h6>
+                </button>
+                <StyledUl className={showDropDownProcesso ? "d-flex position-absolute bg-white text-black flex-column" : "d-none"}>
+                  <StyledNavLink to="/processo/bobinagem" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      Bobinagem
+                  </StyledNavLink>
+                  <StyledNavLink to="/processo/montagemfinal" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      Montagem Final
+                  </StyledNavLink>
+                </StyledUl>
+              </div>
+              {/* Estações */}
+              <div className='dropdown'>
+                <button className='btn text-white border-0 dropdown-toggle font-weight-bold d-flex align-items-center' 
+                data-bs-toggle="dropdown" 
+                onClick={() => {
+                setShowDropDownEstacao(!showDropDownEstacao);
+                setShowDropDownProcesso(false);}}
+                >
+                  <h6>Estações</h6>
+                </button>
+                <StyledUl className={showDropDownEstacao ? "d-flex position-absolute bg-white text-black flex-column" : "d-none"}>
+                  <StyledNavLink to="/estacao/bob09" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      BOB09
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/bob15" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      BOB15
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/bob16" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      BOB16
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/mf02" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      MF02
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/mf03" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      MF03
+                  </StyledNavLink>
+                  <StyledNavLink to="/estacao/mf05" onClick={() => {
+                    showDropDownEstacao(true);
+                    showDropDownProcesso(true);
+                    }}>
+                      MF05
+                  </StyledNavLink>
+                </StyledUl>
+              </div>
+              {/* 
+              <StyledNavDropdown title="Processo" id="collasible-nav-dropdown"  className="d-block">
+                <NavDropdown.Item>
+                  <StyledNavLink to="/processo/bobinagem">
+                    Bobinagem
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/processo/montagemfinal">
+                    Montagem Final
+                  </StyledNavLink>
+                </NavDropdown.Item>
+              </StyledNavDropdown>
+              
+              <StyledNavDropdown title="Estações" id="collasible-nav-dropdown">
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/bob09">
+                    BOB09
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/bob15">
+                    BOB15
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/bob17">
+                    BOB17
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/mf02">
+                    MF02
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/mf03">
+                    MF03
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <StyledNavLink to="/estacao/mf05">
+                    MF05
+                  </StyledNavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+              </StyledNavDropdown>
+              */}
+            </Nav>
+          </Navbar.Collapse>
+          <Navbar.Collapse id="responsive-navbar-nav" className="gap-4">
+            <StyledForm onSubmit={handleSubmit} className="d-flex bg-white border border-dark">
+              <StyledInput 
+                type="text" 
+                placeholder="Pesquisar"
+                onChange={(e) => setQuery(e.target.value)}
+                autoFocus={true}
+                className={navBar ? "bg-transparent text-black" : "bg-transparent"}/>
+              <StyledButton>
+                <i>
+                  <FaSearch/>
+                </i>
+              </StyledButton>
+            </StyledForm>
+            <Nav>
+              {!user && (
+                <StyledBtnLink to="/login" className="btn btn-secondary btn-md active" role="button" aria-pressed="true">
+                  Login
+                </StyledBtnLink>
+              )}
+              
+              <div className="d-flex direction-row">
+                {user && (
+                  <IconUser/>
+                )}
+                
+                {user && (
+                  <StyledDivUser title="" id="collasible-nav-dropdown" drop="start">
+                    <NavDropdown.Item>
+                      <StyledNavLink to="/adicionar/adicionarConteudo">
+                        ADICIONAR CONTEÚDO
+                      </StyledNavLink>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <StyledNavLink to="/adicionar/adicionarDestaque">
+                        ADICIONAR DESTAQUE
+                      </StyledNavLink>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <StyledBtnLink to="/login" 
+                        className="btn btn-secondary btn-md active" 
+                        role="button" 
+                        aria-pressed="true"
+                        onClick={logout}
+                      >
+                        Logout
+                      </StyledBtnLink>
+                    </NavDropdown.Item>
+                  </StyledDivUser>
+                )}
+              </div>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </StyledNavBar>
+    )}
+  </div>
   )
 }
 

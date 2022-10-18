@@ -132,7 +132,7 @@ export const Conteudo = () => {
     <StyledDivVideo>
       {/*Formulario somente do vídeo*/}
       <Div className='d-flex flex-column align-items-center justify-content-center'>
-        <h3 className="p-3 w-100 text-center bg-light border-bottom">Escolha um vídeo</h3>
+        <h3 className="p-3 w-100 text-center bg-light border-bottom">Escolha um vídeo - Adicionar Destaque</h3>
           <i className="h1">
             <FaFileUpload/>
           </i>
@@ -160,7 +160,7 @@ export const Conteudo = () => {
 
       {/*Formulario somente da imagem*/}
       <Div className='d-flex flex-column align-items-center justify-content-center'>
-        <h3 className="p-3 w-100 text-center bg-light border-bottom">Escolha uma imagem</h3>
+        <h3 className="p-3 w-100 text-center bg-light border-bottom">Escolha uma imagem - Adicionar Destaque</h3>
           <i className="h1">
             <FaFileUpload/>
           </i>

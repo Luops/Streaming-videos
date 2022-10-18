@@ -18,7 +18,7 @@ margin-bottom: 15px;
 `
 
 export const Div = styled.div `
-    margin-top: 2%;
+    margin-top: 8%;
     background-color: white;
     width: 70%;
     -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.5); 

@@ -27,8 +27,10 @@ export const Videos = styled.div `
 
 export const Destaque = styled.section `
     background-image: url(${Background});
+    background-position: center;
     background-size: cover;
     margin-top: -56px;
     height: 100vh;
     width: 100%;
+    
 `

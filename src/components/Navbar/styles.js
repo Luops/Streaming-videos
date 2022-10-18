@@ -17,20 +17,31 @@ export const StyledNavBar = styled(Navbar) `
     z-index: 2;
     transition: .2s ease-in-out;
     @media (max-width: 991px) {
-        background-color: white !important;
     }
+`
+
+export const StyledUl = styled.ul`
+    width: 150px;
+    padding: 5px 0px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    gap: 8px;
+    z-index: 1;
 `
 
 export const StyledNavDropdown = styled(NavDropdown) `
     font-weight: bold;
+    color: white !important;
 `
 
 export const StyledNavLink = styled(NavLink) `
     text-decoration: none;
     color: black;
     font-weight: bold;
+    padding: 1px 10px;
     &:hover {
         color: #001f21;
+        background-color: #E9ECEF;
     }
 `
 

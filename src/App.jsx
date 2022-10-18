@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth';
 
+
 //hooks
 import React, {useState, useEffect} from 'react';
 import { useAuthentication } from './hooks/useAuthentication';
@@ -45,6 +46,7 @@ import {
 function App() {
   const [user, setUser] = useState(undefined);
   const {auth} = useAuthentication();
+  const [isHome, setIsHome] = useState(false)
 
   const loadingUser = user === undefined;
 
@@ -57,6 +59,8 @@ function App() {
   if(loadingUser) {
     return <p>Carregando</p>
   }
+
+  
 
   return (
     <div>

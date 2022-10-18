@@ -18,6 +18,7 @@ import { } from 'react-bootstrap';
 
 //Components
 import DetalhesConteudo from '../../components/DetalhesConteudo/DetalhesConteudo';
+import Slide from '../../components/SlideHome/Slide/Slide';
 
 const Home = () => {
   const { documents: conteudo, loading } = useFetchDocuments("conteudo")
@@ -25,7 +26,7 @@ const Home = () => {
   return (
     <StyledDiv>
       <Destaque>
-
+        <Slide />
       </Destaque>
       <Videos className='justify-content-center gap-5 w-100 p-1'>
       {conteudo && conteudo.map((conteudo) => (
