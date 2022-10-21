@@ -42,6 +42,8 @@ export const Conteudo = () => {
   const [estacao, setEstacao] = useState("");
   const [tempoVideo, setTempoVideo] = useState("");
   const [descricao, setDescricao] = useState("");
+  const [descricaoBreve, setDescricaoBreve] = useState("");
+  const [tipoVideo, setTipoVideo] = useState("");
   const [formError, setFormError] = useState("");
 
   const {insertDocument, response} = useInsertDocument("conteudo");
@@ -107,7 +109,8 @@ export const Conteudo = () => {
 
     setFormError("");
     //Checar os valores
-    if(!titulo || !imagem || !processo || !estacao || !tempoVideo || !descricao ||videoURL) {
+    if(!titulo || !imagem || !processo || !estacao || !tempoVideo || !descricao ||videoURL || !tipoVideo
+      || !descricaoBreve) {
       setFormError("Por favor, preencha todos os campos!")
     }
     
@@ -119,6 +122,8 @@ export const Conteudo = () => {
       estacao,
       descricao,
       imagem,
+      tipoVideo,
+      descricaoBreve,
       tempoVideo,
       videoURL,
       uid: user.uid
@@ -234,6 +239,44 @@ export const Conteudo = () => {
                 </select>
               </label>
             </div>
+            <div className='w-100 d-flex align-items-start justify-content-center gap-2'>
+              <label htmlFor="" className='d-flex flex-column align-items-center justify-content-center'>
+                <span className='align-self-start'>Tempo de vídeo:</span>
+                <input 
+                type="text" 
+                name="tempoVideo" 
+                required
+                onChange={(e) => setTempoVideo(e.target.value)}
+                value={tempoVideo}/>
+              </label>
+              <label htmlFor="" className='d-flex flex-column align-items-center justify-content-center gap-1 w-50'>
+                <span className='align-self-start'>Descrição breve do conteúdo</span>
+                <textArea 
+                className='w-100'
+                name="descricaoBreve"
+                required
+                placeholder='Insira uma descrição breve para o conteúdo.'
+                onChange={(e) => setDescricaoBreve(e.target.value)}
+                value={descricaoBreve}
+                >
+                </textArea>
+              </label>
+              <label htmlFor="" className='d-flex flex-column align-items-center justify-content-center'>
+                <span className='align-self-start'>Tipo de vídeo:</span>
+                <select
+                name="tipoVideo"
+                id="select" 
+                required
+                onChange={(e) => setTipoVideo(e.target.value)}
+                value={tipoVideo}>
+                  <option value="">Selecionar</option>
+                  <option value="inspecao">Inspeção</option>
+                  <option value="regulagem">Regulagem</option>
+                  <option value="ajuste">Ajuste</option>
+                  <option value="setup">Setup</option>
+                </select>
+              </label>
+            </div>
             <div className='d-flex flex-row align-items-center justify-content-center gap-3 w-100 px-5'>
               <label htmlFor="" className='d-flex flex-column align-items-center justify-content-center gap-1 w-100'>
                 <span className='align-self-start'>Descrição do conteúdo</span>
@@ -249,15 +292,7 @@ export const Conteudo = () => {
               </label>
               
             </div>
-            <label htmlFor="" className='d-flex flex-column align-items-center justify-content-center'>
-                <span className='align-self-start'>Tempo de vídeo:</span>
-                <input 
-                type="text" 
-                name="tempoVideo" 
-                required
-                onChange={(e) => setTempoVideo(e.target.value)}
-                value={tempoVideo}/>
-              </label>
+            
             <div className='d-flex gap-3'>
               {/* Selecionar video*/}
               <input 

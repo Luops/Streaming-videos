@@ -5,13 +5,15 @@ import {
     query, 
     orderBy, 
     onSnapshot, 
-    where, 
+    where,
+    limit, 
     QuerySnapshot
 } from "firebase/firestore"
 
 
 export const useFetchDocuments = (docCollection, search = null, uid = null) => {
     const [documents, setDocuments] = useState(null)
+    const [documentsDestaque, setDocumentsDestaque] = useState(null)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(null)
 
@@ -57,9 +59,45 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         loadData();
     }, [docCollection, documents, search, uid, cancelled]);
 
+    //Mapear conteudo destaque(useEffect)
+    useEffect(() => {
+
+        async function loadData(){
+            if(cancelled) return
+
+            setLoading(true)
+
+            const collectionRef = await collection(dbFire, docCollection)
+
+            try {
+                let q;
+
+                
+                q = await query(collectionRef, orderBy('createdAt', 'desc'), limit(5))
+                
+
+                await onSnapshot(q, (querySnapshot) => {
+                    setDocumentsDestaque(
+                        querySnapshot.docs.map((doc) => ({
+                            id: doc.id,
+                            ...doc.data(),
+                        }))
+                    )
+                })
+
+            } catch (error) {
+                console.log(error)
+                setError(error.message);
+
+                setLoading(false);
+            }
+        }
+        loadData();
+    }, [docCollection, documents, uid, cancelled]);
+
     useEffect(() => {
         return () => setCancelled(true)
     }, [])
 
-    return {documents, loading, error}
+    return {documents, documentsDestaque, loading, error}
 }

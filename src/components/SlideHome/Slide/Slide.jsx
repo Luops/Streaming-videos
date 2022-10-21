@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 
+//hooks
+import { useFetchDocuments } from '../../../hooks/useFetchDocuments';
 
 //Componentes
 import VideoDestaque from '../VideoDestaque/VideoDestaque';
@@ -24,7 +26,10 @@ import 'swiper/css/autoplay'
 import { Pagination, Navigation, Autoplay } from "swiper";
 
 
+
 const Slide = () => {
+  const { documentsDestaque: destaque, loading } = useFetchDocuments("destaque")
+
   return (
     <div className='d-flex flex-column w-100 text-align-center align-items-center justify-content-center h-100'>
         <Swiper 
@@ -37,9 +42,12 @@ const Slide = () => {
         navigation
         modules={[Autoplay, Pagination, Navigation]}
         className="w-100 d-flex align-items-center justify-content-center text-align-center mySwiper text-white">
-            <SwiperSlide className='w-100 d-flex align-items-center justify-content-center text-align-center'>
-                <VideoDestaque />
-            </SwiperSlide>
+            {destaque && destaque.map((destaque) => (
+              <SwiperSlide className='w-100 d-flex align-items-center justify-content-center text-align-center'>
+                <VideoDestaque key={destaque.id} destaque={destaque}/>
+              </SwiperSlide>
+            ))}
+            
             <SwiperSlide className='w-100 d-flex align-items-center justify-content-center text-align-center'>
                 <Texto />
             </SwiperSlide>

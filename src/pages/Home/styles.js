@@ -26,6 +26,9 @@ export const Videos = styled.div `
 `
 
 export const Destaque = styled.section `
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-image: url(${Background});
     background-position: center;
     background-size: cover;
