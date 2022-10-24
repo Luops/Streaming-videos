@@ -4,7 +4,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useFetchDocument } from '../../hooks/useFetchDocument';
 
-//Componente
+//Componentes
 import Player from '../../components/Player/Player';
 
 //Styled components
@@ -23,34 +23,34 @@ import {
 //Bootstrap
 import { } from 'react-bootstrap';
 
+
 //Icones
 import { FaHistory } from "react-icons/fa"
 
-
-const Conteudo = () => {
+const Destaque = () => {
     const {id} = useParams();
-    const { document: conteudo, loading} = useFetchDocument("conteudo", id)
+    const { document: destaque, loading} = useFetchDocument("destaque", id)
 
   return (
     <ConteudoContainer>
-        {loading && <p>Carregando conteudo!</p>}
-        {conteudo && (
+        {loading && <p>Carregando conteudo destaque!</p>}
+        {destaque && (
             <>
                 <SectionDescricao className='d-flex gap-5 w-100 justify-content-center align-items-center'> 
-                  <Imagem src={conteudo.imagem} alt={conteudo.titulo} />
+                  <Imagem src={destaque.imagem} alt={destaque.titulo} />
                   <DivDescricao className='w-50 d-flex flex-column justify-content-center '>
-                    <h1 className='mb-1'>{conteudo.titulo}</h1>
+                    <h1 className='mb-1'>{destaque.titulo}</h1>
                     <div className='d-flex gap-5 '>
-                      <p className='text-uppercase text-primary d-flex fw-bold'>{conteudo.tipoVideo === "inspecao" && (<p>Inspeção</p>) || conteudo.tipoVideo}, {conteudo.estacao}</p>
-                      <p className='text-uppercase text-primary fw-bold gap-2 d-flex align-items-center'><FaHistory/>{conteudo.tempoVideo}</p>
+                      <p className='text-uppercase text-primary d-flex fw-bold'>{destaque.tipoVideo === "inspecao" && (<p>Inspeção</p>) || destaque.tipoVideo}, {destaque.estacao}</p>
+                      <p className='text-uppercase text-primary fw-bold gap-2 d-flex align-items-center'><FaHistory/>{destaque.tempoVideo}</p>
                     </div>
                     <Paragrafo className="mt-5 text-justify">
-                      {conteudo.descricao}
+                      {destaque.descricao}
                     </Paragrafo>
                   </DivDescricao>
                 </SectionDescricao>
                 <SectionVideo className="">
-                  <Player key={conteudo.id} conteudo={conteudo}/>
+                  <Player key={destaque.id} conteudo={destaque}/>
                 </SectionVideo>
             </>
         )}
@@ -58,4 +58,4 @@ const Conteudo = () => {
   )
 }
 
-export default Conteudo
+export default Destaque

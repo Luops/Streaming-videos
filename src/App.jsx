@@ -34,6 +34,7 @@ import AdicionarVideo from './pages/Adicionar/AdicionarConteudo/Video';
 import AdicionarDestaque from './pages/Adicionar/AdicionarDestaque/Video';
 import Search from './pages/Search/Search';
 import Conteudo from './pages/Conteudo/Conteudo';
+import Destaque from './pages/Destaque/Destaque';
 
 //Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -75,6 +76,7 @@ function App() {
             <Route path="/search" element={<Search />}/>
             <Route path="/estacao/bob09" element={user ? <Bob09 /> : <Navigate to="/login"/>} />
             <Route path="/conteudo/:id" element={user ? <Conteudo /> : <Navigate to="/login"/>} />
+            <Route path="/destaque/:id" element={user ? <Destaque /> : <Navigate to="/login"/>} />
             <Route path="/estacao/bob15" element={user ? <Bob15 /> : <Navigate to="/login"/>} />
             <Route path="/estacao/bob17" element={user ? <Bob17 /> : <Navigate to="/login"/>} />
             <Route path="/estacao/mf02" element={user ? <Mf02 /> : <Navigate to="/login"/>} />
