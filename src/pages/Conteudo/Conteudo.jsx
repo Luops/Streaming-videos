@@ -14,7 +14,8 @@ import {
   Paragrafo,
   SectionDescricao,
   SectionVideo,
-  DivDescricao
+  DivDescricao,
+  H1
 } from "./styles"
   
 import { 
@@ -39,7 +40,7 @@ const Conteudo = () => {
                 <SectionDescricao className='d-flex gap-5 w-100 justify-content-center align-items-center'> 
                   <Imagem src={conteudo.imagem} alt={conteudo.titulo} />
                   <DivDescricao className='w-50 d-flex flex-column justify-content-center '>
-                    <h1 className='mb-1'>{conteudo.titulo}</h1>
+                    <H1 className='mb-1'>{conteudo.titulo}</H1>
                     <div className='d-flex gap-5 '>
                       <p className='text-uppercase text-primary d-flex fw-bold'>{conteudo.tipoVideo === "inspecao" && (<p>Inspeção</p>) || conteudo.tipoVideo}, {conteudo.estacao}</p>
                       <p className='text-uppercase text-primary fw-bold gap-2 d-flex align-items-center'><FaHistory/>{conteudo.tempoVideo}</p>

@@ -12,6 +12,7 @@ import {
 
 export const ConteudoContainer = styled(StyledDiv)`
   padding-top: 100px;
+  width: 100%;
 `
 export const SectionDescricao = styled.section`
   padding: 0 15px;
@@ -26,6 +27,7 @@ export const SectionVideo = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width:  100%;
   margin-top: 50px;
   background: rgb(16,15,70);
   background: -moz-linear-gradient(90deg, rgba(16,15,70,1) 0%, rgba(3,42,107,1) 100%);
@@ -59,5 +61,14 @@ export const Paragrafo = styled.p`
   text-indent: 1em;
   @media (max-width: 991px) {
     width: 125%;
+  }
+`
+
+export const H1 = styled.h1`
+  font-size: 2.75em;
+  @media (max-width: 991px) {
+    font-size: 1.75em;
+    width: 125%;
+    text-align: center;
   }
 `
