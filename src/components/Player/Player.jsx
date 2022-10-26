@@ -6,21 +6,28 @@ import {
     Video,
     Barra,
     VideoFull,
-    Expandir
+    BarraPlayerFull,
+    Botoes,
+    BarraAudio
 } from "./styles"
 
 //Bootstrap
 import { 
-  
 } from 'react-bootstrap';
 
 //Icons
-import { FaPlay, FaPause, FaExpand } from 'react-icons/fa'
+import { 
+    FaPlay, 
+    FaPause, 
+    FaExpand,
+    FaCompressArrowsAlt,
+    FaHeadphonesAlt } from 'react-icons/fa'
 
 function usePlayerState($videoPlayer){
     const [playerState, setPlayerState] = useState({
         playing: false,
         percentage: 0,
+        audioPercentage: 20,
     });
 
     
@@ -57,19 +64,31 @@ function usePlayerState($videoPlayer){
 
     }
 
+    function handleChangeAudioPercentage(event){
+        const audioPercentageValue = event.target.value;
+        
+        $videoPlayer.current.volume =  audioPercentageValue / 100;
+
+        setPlayerState({
+            ...playerState,
+            audioPercentage: audioPercentageValue,
+        })
+
+        console.log($videoPlayer.current.volume)
+
+    }
+
 
     return {
         playerState,
         toggleVideoPlay,
         handleTimeUpdate,
         handleChangeVideoPercentage,
-        
+        handleChangeAudioPercentage
     }
 }
 
-function useFullScreen(){
-    const [fullScreen, setFullScreen] = useState(false)
-}
+
 
 const Player = ({conteudo, destaque}) => {
     const $videoPlayer = useRef(null);
@@ -81,9 +100,9 @@ const Player = ({conteudo, destaque}) => {
         toggleVideoPlay,
         handleTimeUpdate,
         handleChangeVideoPercentage,
+        handleChangeAudioPercentage
     } = usePlayerState($videoPlayer);
 
-    console.log(fullScreen)
 
   return (
     <div className='w-100'>
@@ -96,11 +115,13 @@ const Player = ({conteudo, destaque}) => {
                     {!fullScreen ? 
                     <Video 
                     className=''
+                    constrols
                     ref={$videoPlayer}
                     src={conteudo.videoURL}
                     onTimeUpdate={handleTimeUpdate}
                     onClick={toggleVideoPlay}
-                    /> :
+                    /> 
+                    :
                     <VideoFull 
                     className=''
                     ref={$videoPlayer}
@@ -109,8 +130,71 @@ const Player = ({conteudo, destaque}) => {
                     onClick={toggleVideoPlay}
                     />
                 }
-                    
+                    {!fullScreen ?
                     <BarraPlayer>
+                        <Barra 
+                        type="range" 
+                        min="0"
+                        max="100"
+                        onChange={handleChangeVideoPercentage}
+                        value={playerState.percentage}/>
+                        <Botoes className=''>
+                            <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
+                                <button 
+                                className="d-flex align-items-center justify-content-center bg-transparent border-0 fs-5 text-white"
+                                onClick={toggleVideoPlay}
+                                >
+                                    {playerState.playing ? <FaPause /> : <FaPlay />}
+                                </button>
+                                {$videoPlayer.current && (
+                                    <p className='text-white fw-bold m-auto'> 
+                                        {Math.trunc($videoPlayer.current.currentTime / 60 )}:{Math.round($videoPlayer.current.currentTime % 60)} / {Math.trunc($videoPlayer.current.duration / 60)}:{Math.round($videoPlayer.current.duration % 60)}
+                                    </p>
+                                )}
+                                {!$videoPlayer.current && (
+                                    <p className='text-white fw-bold d-flex m-auto'> 
+                                        0:0 / 0:0
+                                    </p>
+                                )}
+                                <div className='d-flex align-items-center justify-content-center gap-1'>
+                                    <FaHeadphonesAlt className='fs-5 text-white'/>
+                                    <BarraAudio 
+                                    className='bg-danger'
+                                    type="range" 
+                                    min="0"
+                                    max="100"
+                                    onChange={handleChangeAudioPercentage}
+                                    value={playerState.audioPercentage}/>
+                                    <p className='m-auto text-white'>
+                                        {playerState.audioPercentage}%
+                                    </p>
+                                </div>
+                            </div>
+                            <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
+                                {!fullScreen ?
+                                <FaExpand 
+                                className='text-white fs-4'
+                                onClick={(e) => setFullScreen(!fullScreen)}
+                                />
+                                :
+                                <FaCompressArrowsAlt 
+                                className='text-white fs-4'
+                                onClick={(e) => setFullScreen(!fullScreen)}
+                                />
+                            }
+                                
+                                <select >
+                                    {[1,2,3].map(speed => (
+                                        <option key={`speedChange_${speed}`}>
+                                            {speed}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </Botoes>
+                    </BarraPlayer>
+                    :
+                    <BarraPlayerFull>
                         <Barra 
                         type="range" 
                         min="0"
@@ -137,10 +221,17 @@ const Player = ({conteudo, destaque}) => {
                                 )}
                             </div>
                             <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
+                                {!fullScreen ?
                                 <FaExpand 
                                 className='text-white fs-4'
-                                onClick={(e) => setFullScreen(true)}
+                                onClick={(e) => setFullScreen(!fullScreen)}
                                 />
+                                :
+                                <FaCompressArrowsAlt 
+                                className='text-white fs-4'
+                                onClick={(e) => setFullScreen(!fullScreen)}
+                                />
+                            }
                                 
                                 <select >
                                     {[1,2,3].map(speed => (
@@ -151,8 +242,10 @@ const Player = ({conteudo, destaque}) => {
                                 </select>
                             </div>
                         </div>
-                        
-                    </BarraPlayer>
+                        :
+
+                    </BarraPlayerFull>
+                    }
                 </div>
             </div> 
             
@@ -207,9 +300,10 @@ const Player = ({conteudo, destaque}) => {
                                 )}
                             </div>
                             <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
+                                {fullScreen}
                                 <FaExpand 
                                 className='text-white fs-4'
-                                onClick={(e) => setFullScreen(true)}
+                                onClick={() => setFullScreen(false)}
                                 />
                                 
                                 <select >
