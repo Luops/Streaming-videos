@@ -27,6 +27,8 @@ import { } from 'react-bootstrap';
 //Icones
 import { FaHistory } from "react-icons/fa"
 
+import "../../components/Player/Player"
+
 
 const Conteudo = () => {
     const {id} = useParams();

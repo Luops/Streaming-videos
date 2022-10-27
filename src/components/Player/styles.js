@@ -7,6 +7,11 @@ import {
     Button
 } from 'react-bootstrap';
 
+//Styles de outro component 
+import {
+    SectionVideo
+} from '../../pages/Conteudo/styles.js'
+
 export const Video = styled.video`
     position: relative;
     z-index: 0;
@@ -60,7 +65,6 @@ export const BarraPlayerFull = styled.div`
     justify-content: center;
     align-self: center;
     padding: 0px 15px;
-    padding-top: 40px;
     bottom: 150px;
     background-color: rgba( 0, 0, 0, 0.65 );
     z-index: 1;
