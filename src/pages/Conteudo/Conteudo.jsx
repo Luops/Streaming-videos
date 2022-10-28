@@ -15,7 +15,7 @@ import {
   SectionDescricao,
   SectionVideo,
   DivDescricao,
-  H1
+  H1,
 } from "./styles"
   
 import { 
@@ -27,7 +27,9 @@ import { } from 'react-bootstrap';
 //Icones
 import { FaHistory } from "react-icons/fa"
 
+//Componentes
 import "../../components/Player/Player"
+import Recomendados from '../../components/Recomendados/Recomendados';
 
 
 const Conteudo = () => {
@@ -54,7 +56,8 @@ const Conteudo = () => {
                 </SectionDescricao>
                 <SectionVideo className="">
                   <Player key={conteudo.id} conteudo={conteudo}/>
-                </SectionVideo>
+                </SectionVideo> 
+                <Recomendados key={conteudo.id} conteudo={conteudo}/>
             </>
         )}
     </ConteudoContainer>

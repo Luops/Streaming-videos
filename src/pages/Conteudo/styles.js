@@ -34,7 +34,6 @@ export const SectionVideo = styled.section`
   background: -webkit-linear-gradient(90deg, rgba(16,15,70,1) 0%, rgba(3,42,107,1) 100%);
   background: linear-gradient(90deg, rgba(16,15,70,1) 0%, rgba(3,42,107,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#100f46",endColorstr="#032a6b",GradientType=1);
-
   width: 100%;
   @media (max-width: 991px) {
     
@@ -71,4 +70,7 @@ export const H1 = styled.h1`
     width: 125%;
     text-align: center;
   }
+`
+
+export const SectionRecomendado = styled.section`
 `

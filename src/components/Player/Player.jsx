@@ -82,15 +82,14 @@ function usePlayerState($videoPlayer){
     function handleChangeSpeed(event){
         const speedValue = event.target.value;
         
-        $videoPlayer.current.playBackRate = speedValue;
+        $videoPlayer.current.playbackRate = speedValue * 1;
 
         setPlayerState({
             ...playerState,
             speedChange: speedValue
         })
 
-        console.log($videoPlayer.current.playBackRate)
-
+        console.log($videoPlayer.current.playbackRate)
     }
 
 
@@ -119,8 +118,6 @@ const Player = ({conteudo, destaque}) => {
         handleChangeAudioPercentage,
         handleChangeSpeed
     } = usePlayerState($videoPlayer);
-
-    console.log(playerState.speedChange)
 
 
   return (
@@ -191,14 +188,12 @@ const Player = ({conteudo, destaque}) => {
                                 onClick={(e) => setFullScreen(!fullScreen)}
                                 />
                             }
-                                
-                                <select >
-                                    {[1,1.5,2].map(speed => (
+                                <select
+                                value={playerState.speedChange}
+                                onChange={handleChangeSpeed}>
+                                    {[0.5,1,1.5,2].map(speed => (
                                         <option 
-                                        key={`${speed}`}
-                                        onChange={handleChangeSpeed}
-                                        value={playerState.speedChange}
-                                        >
+                                        key={`${speed}`}>
                                             {speed}
                                         </option>
                                     ))}
@@ -268,10 +263,12 @@ const Player = ({conteudo, destaque}) => {
                                 onClick={(e) => setFullScreen(!fullScreen)}
                                 />
                             }
-                                
-                                <select >
-                                    {[1,2,3].map(speed => (
-                                        <option key={`speedChange_${speed}`}>
+                                <select
+                                value={playerState.speedChange}
+                                onChange={handleChangeSpeed}>
+                                    {[0.5,1,1.5,2].map(speed => (
+                                        <option 
+                                        key={`${speed}`}>
                                             {speed}
                                         </option>
                                     ))}
@@ -286,27 +283,19 @@ const Player = ({conteudo, destaque}) => {
             : 
             
             <div className='my-5 d-flex flex-column align-items-center justify-content-center w-100'>
-                <p className='text-white fw-bold h3'>
+                <p className={!fullScreen ? 'text-white fw-bold h3' : 'text-black fw-bold h3'}>
                     {destaque.titulo}
                 </p>
+                {!fullScreen ? 
                 <div className='w-100 d-flex flex-column align-items-center justify-content-center'>
-                    {!fullScreen ? 
                     <Video 
                     className=''
-                    ref={$videoPlayer}
-                    src={destaque.videoURL}
-                    onTimeUpdate={handleTimeUpdate}
-                    onClick={toggleVideoPlay}
-                    /> :
-                    <VideoFull 
-                    className=''
+                    constrols
                     ref={$videoPlayer}
                     src={destaque.videoURL}
                     onTimeUpdate={handleTimeUpdate}
                     onClick={toggleVideoPlay}
                     />
-                }
-                    
                     <BarraPlayer>
                         <Barra 
                         type="range" 
@@ -314,7 +303,7 @@ const Player = ({conteudo, destaque}) => {
                         max="100"
                         onChange={handleChangeVideoPercentage}
                         value={playerState.percentage}/>
-                        <div className='d-flex align-items-start justify-content-between w-100 gap-4'>
+                        <Botoes className=''>
                             <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
                                 <button 
                                 className="d-flex align-items-center justify-content-center bg-transparent border-0 fs-5 text-white"
@@ -332,59 +321,19 @@ const Player = ({conteudo, destaque}) => {
                                         0:0 / 0:0
                                     </p>
                                 )}
-                            </div>
-                            <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
-                                {fullScreen}
-                                <FaExpand 
-                                className='text-white fs-4'
-                                onClick={() => setFullScreen(false)}
-                                />
-                                
-                                <select >
-                                    {[1,2,3].map(speed => (
-                                        <option key={`speedChange_${speed}`}>
-                                            {speed}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-                        
-                    </BarraPlayer>
-                </div>
-            </div>
-            }
-    </div>
-  )
-}
-
-export default Player
-
-{/*<BarraPlayerFull>
-                        <Barra 
-                        type="range" 
-                        min="0"
-                        max="100"
-                        onChange={handleChangeVideoPercentage}
-                        value={playerState.percentage}/>
-                        <div className='d-flex align-items-start justify-content-between w-100 gap-4'>
-                            <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
-                                <button 
-                                className="d-flex align-items-center justify-content-center bg-transparent border-0 fs-5 text-white"
-                                onClick={toggleVideoPlay}
-                                >
-                                    {playerState.playing ? <FaPause /> : <FaPlay />}
-                                </button>
-                                {$videoPlayer.current && (
-                                    <p className='text-white fw-bold m-auto'> 
-                                        {Math.trunc($videoPlayer.current.currentTime / 60 )}:{Math.round($videoPlayer.current.currentTime % 60)} / {Math.trunc($videoPlayer.current.duration / 60)}:{Math.round($videoPlayer.current.duration % 60)}
+                                <div className='d-flex align-items-center justify-content-center gap-1'>
+                                    <FaHeadphonesAlt className='fs-5 text-white'/>
+                                    <BarraAudio 
+                                    className='bg-danger'
+                                    type="range" 
+                                    min="0"
+                                    max="100"
+                                    onChange={handleChangeAudioPercentage}
+                                    value={playerState.audioPercentage}/>
+                                    <p className='m-auto text-white'>
+                                        {playerState.audioPercentage}%
                                     </p>
-                                )}
-                                {!$videoPlayer.current && (
-                                    <p className='text-white fw-bold d-flex m-auto'> 
-                                        0:0 / 0:0
-                                    </p>
-                                )}
+                                </div>
                             </div>
                             <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
                                 {!fullScreen ?
@@ -398,16 +347,100 @@ export default Player
                                 onClick={(e) => setFullScreen(!fullScreen)}
                                 />
                             }
-                                
-                                <select >
-                                    {[1,2,3].map(speed => (
-                                        <option key={`speedChange_${speed}`}>
+                                <select
+                                value={playerState.speedChange}
+                                onChange={handleChangeSpeed}>
+                                    {[0.5,1,1.5,2].map(speed => (
+                                        <option 
+                                        key={`${speed}`}>
                                             {speed}
                                         </option>
                                     ))}
                                 </select>
                             </div>
-                        </div>
-                        :
+                        </Botoes>
+                    </BarraPlayer>
+                </div>
+                :
+                <div className='bg-black'>
+                    <VideoFull 
+                    className=''
+                    constrols
+                    ref={$videoPlayer}
+                    src={destaque.videoURL}
+                    onTimeUpdate={handleTimeUpdate}
+                    onClick={toggleVideoPlay}
+                    />
+                    <BarraPlayerFull>
+                        <Barra 
+                        type="range" 
+                        min="0"
+                        max="100"
+                        onChange={handleChangeVideoPercentage}
+                        value={playerState.percentage}/>
+                        <Botoes className=''>
+                            <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
+                                <button 
+                                className="d-flex align-items-center justify-content-center bg-transparent border-0 fs-5 text-white"
+                                onClick={toggleVideoPlay}
+                                >
+                                    {playerState.playing ? <FaPause /> : <FaPlay />}
+                                </button>
+                                {$videoPlayer.current && (
+                                    <p className='text-white fw-bold m-auto'> 
+                                        {Math.trunc($videoPlayer.current.currentTime / 60 )}:{Math.round($videoPlayer.current.currentTime % 60)} / {Math.trunc($videoPlayer.current.duration / 60)}:{Math.round($videoPlayer.current.duration % 60)}
+                                    </p>
+                                )}
+                                {!$videoPlayer.current && (
+                                    <p className='text-white fw-bold d-flex m-auto'> 
+                                        0:0 / 0:0
+                                    </p>
+                                )}
+                                <div className='d-flex align-items-center justify-content-center gap-1'>
+                                    <FaHeadphonesAlt className='fs-5 text-white'/>
+                                    <BarraAudio 
+                                    className='bg-danger'
+                                    type="range" 
+                                    min="0"
+                                    max="100"
+                                    onChange={handleChangeAudioPercentage}
+                                    value={playerState.audioPercentage}/>
+                                    <p className='m-auto text-white'>
+                                        {playerState.audioPercentage}%
+                                    </p>
+                                </div>
+                            </div>
+                            <div className='gap-3 d-flex align-items-center justify-content-center text-align-center'>
+                                {!fullScreen ?
+                                <FaExpand 
+                                className='text-white fs-4'
+                                onClick={(e) => setFullScreen(!fullScreen)}
+                                />
+                                :
+                                <FaCompressArrowsAlt 
+                                className='text-white fs-4'
+                                onClick={(e) => setFullScreen(!fullScreen)}
+                                />
+                            }
+                                <select
+                                value={playerState.speedChange}
+                                onChange={handleChangeSpeed}>
+                                    {[0.5,1,1.5,2].map(speed => (
+                                        <option 
+                                        key={`${speed}`}>
+                                            {speed}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </Botoes>
+                    </BarraPlayerFull>
+                </div>
+                }
+            </div>
+            }
+    </div>
+  )
+}
 
-                    </BarraPlayerFull> */}
+export default Player
