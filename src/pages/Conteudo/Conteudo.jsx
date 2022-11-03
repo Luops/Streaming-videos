@@ -6,6 +6,8 @@ import { useFetchDocument } from '../../hooks/useFetchDocument';
 
 //Componente
 import Player from '../../components/Player/Player';
+import Recomendados from '../../components/Recomendados/Recomendados';
+
 
 //Styled components
 import { 
@@ -29,7 +31,6 @@ import { FaHistory } from "react-icons/fa"
 
 //Componentes
 import "../../components/Player/Player"
-import Recomendados from '../../components/Recomendados/Recomendados';
 
 
 const Conteudo = () => {

@@ -6,6 +6,7 @@ import { useFetchDocument } from '../../hooks/useFetchDocument';
 
 //Componentes
 import Player from '../../components/Player/Player';
+import Recomendados from '../../components/Recomendados/Recomendados';
 
 //Styled components
 import { 
@@ -26,6 +27,7 @@ import { } from 'react-bootstrap';
 
 //Icones
 import { FaHistory } from "react-icons/fa"
+
 
 const Destaque = () => {
     const {id} = useParams();
@@ -52,6 +54,7 @@ const Destaque = () => {
                 <SectionVideo className="">
                   <Player key={destaque.id} conteudo={destaque}/>
                 </SectionVideo>
+                <Recomendados key={destaque.id} conteudo={destaque}/>
             </>
         )}
     </ConteudoContainer>

@@ -18,12 +18,16 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
     const [documentsRegulagem, setDocumentsRegulagem] = useState(null)
     const [documentsAjuste, setDocumentsAjuste] = useState(null)
     const [documentsSetup, setDocumentsSetup] = useState(null)
+    const [documentsInspecaoDez, setDocumentsInspecaoDez] = useState(null)
+    const [documentsRegulagemDez, setDocumentsRegulagemDez] = useState(null)
+    const [documentsAjusteDez, setDocumentsAjusteDez] = useState(null)
+    const [documentsSetupDez, setDocumentsSetupDez] = useState(null)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(null)
 
     const [cancelled, setCancelled] = useState(false)
 
-    //Mapear (useEffect)
+    //Mapear Conteudo padrao(useEffect)
     useEffect(() => {
 
         async function loadData(){
@@ -135,6 +139,42 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         loadData();
     }, [docCollection, documents, uid, cancelled]);
 
+    //Mapear conteudo por inspeções, últimos 10(useEffect)
+    useEffect(() => {
+
+        async function loadData(){
+            if(cancelled) return
+
+            setLoading(true)
+
+            const collectionRef = await collection(dbFire, docCollection)
+
+            try {
+                let q;
+
+                
+                q = await query(collectionRef, where("tipoVideo", "==", "inspecao"), orderBy('createdAt', 'desc'), limit(10))
+                
+
+                await onSnapshot(q, (querySnapshot) => {
+                    setDocumentsInspecaoDez(
+                        querySnapshot.docs.map((doc) => ({
+                            id: doc.id,
+                            ...doc.data(),
+                        }))
+                    )
+                })
+
+            } catch (error) {
+                console.log(error)
+                setError(error.message);
+
+                setLoading(false);
+            }
+        }
+        loadData();
+    }, [docCollection, documents, uid, cancelled]);
+
     //Mapear conteudo por regulagens(useEffect)
     useEffect(() => {
 
@@ -154,6 +194,42 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
 
                 await onSnapshot(q, (querySnapshot) => {
                     setDocumentsRegulagem(
+                        querySnapshot.docs.map((doc) => ({
+                            id: doc.id,
+                            ...doc.data(),
+                        }))
+                    )
+                })
+
+            } catch (error) {
+                console.log(error)
+                setError(error.message);
+
+                setLoading(false);
+            }
+        }
+        loadData();
+    }, [docCollection, documents, uid, cancelled]);
+
+    //Mapear conteudo por regulagens, últimos 10 (useEffect)
+    useEffect(() => {
+
+        async function loadData(){
+            if(cancelled) return
+
+            setLoading(true)
+
+            const collectionRef = await collection(dbFire, docCollection)
+
+            try {
+                let q;
+
+                
+                q = await query(collectionRef, where("tipoVideo", "==", "regulagem"), orderBy('createdAt', 'desc'), limit(10))
+                
+
+                await onSnapshot(q, (querySnapshot) => {
+                    setDocumentsRegulagemDez(
                         querySnapshot.docs.map((doc) => ({
                             id: doc.id,
                             ...doc.data(),
@@ -207,6 +283,42 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         loadData();
     }, [docCollection, documents, uid, cancelled]);
 
+    //Mapear conteudo por ajuste, últimos 10 (useEffect)
+    useEffect(() => {
+
+        async function loadData(){
+            if(cancelled) return
+
+            setLoading(true)
+
+            const collectionRef = await collection(dbFire, docCollection)
+
+            try {
+                let q;
+
+                
+                q = await query(collectionRef, where("tipoVideo", "==", "ajuste"), orderBy('createdAt', 'desc'), limit(10))
+                
+
+                await onSnapshot(q, (querySnapshot) => {
+                    setDocumentsAjusteDez(
+                        querySnapshot.docs.map((doc) => ({
+                            id: doc.id,
+                            ...doc.data(),
+                        }))
+                    )
+                })
+
+            } catch (error) {
+                console.log(error)
+                setError(error.message);
+
+                setLoading(false);
+            }
+        }
+        loadData();
+    }, [docCollection, documents, uid, cancelled]);
+
     //Mapear conteudo por setup(useEffect)
     useEffect(() => {
 
@@ -243,6 +355,42 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         loadData();
     }, [docCollection, documents, uid, cancelled]);
 
+    //Mapear conteudo por setup, últimos 10 (useEffect)
+    useEffect(() => {
+
+        async function loadData(){
+            if(cancelled) return
+
+            setLoading(true)
+
+            const collectionRef = await collection(dbFire, docCollection)
+
+            try {
+                let q;
+
+                
+                q = await query(collectionRef, where("tipoVideo", "==", "setup"), orderBy('createdAt', 'desc'), limit(10))
+                
+
+                await onSnapshot(q, (querySnapshot) => {
+                    setDocumentsSetupDez(
+                        querySnapshot.docs.map((doc) => ({
+                            id: doc.id,
+                            ...doc.data(),
+                        }))
+                    )
+                })
+
+            } catch (error) {
+                console.log(error)
+                setError(error.message);
+
+                setLoading(false);
+            }
+        }
+        loadData();
+    }, [docCollection, documents, uid, cancelled]);
+
     useEffect(() => {
         return () => setCancelled(true)
     }, [])
@@ -254,6 +402,10 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         documentsRegulagem, 
         documentsAjuste, 
         documentsSetup,
+        documentsInspecaoDez, 
+        documentsRegulagemDez, 
+        documentsAjusteDez, 
+        documentsSetupDez,
         loading, 
         error}
 }

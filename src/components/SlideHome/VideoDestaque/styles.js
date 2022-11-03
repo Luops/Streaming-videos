@@ -48,6 +48,6 @@ export const Button = styled.button`
     border: 1px solid white;
     &:hover {
       background: linear-gradient(91deg,rgba(0,69,177,0.8) 0%, rgba(40,125,255,0.8) 100%);
-      transform: scale(1.005)
+      transform: scale(1.005);
     }
 `

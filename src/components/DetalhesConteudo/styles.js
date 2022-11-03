@@ -9,8 +9,8 @@ import {
 
 
 export const Component = styled.div `
-    max-width: 320px;
-    max-height: 550px;
+    width: 320px;
+    height: 550px;
     display: flex;
     flex-direction: column;
     justify-content: center;

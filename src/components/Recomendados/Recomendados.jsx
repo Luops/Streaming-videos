@@ -1,5 +1,11 @@
 import React, { Component, useState, useEffect, useRef } from 'react'
 
+//hooks
+import { useFetchDocuments } from '../../hooks/useFetchDocuments';
+
+//Components
+import DetalhesConteudo from '../DetalhesConteudo/DetalhesConteudo';
+
 //Styled components
 import { 
     Container
@@ -18,8 +24,8 @@ import 'swiper/css/autoplay'
 
 // import required modules
 import { Pagination, Navigation, Autoplay } from "swiper";
-import { useFetchDocuments } from '../../hooks/useFetchDocuments';
-import DetalhesConteudo from '../DetalhesConteudo/DetalhesConteudo';
+
+
 
 const Recomendados = ({conteudo, destaque}) => {
     const { documentsInspecao: inspecao } = useFetchDocuments("conteudo")
@@ -29,7 +35,7 @@ const Recomendados = ({conteudo, destaque}) => {
 
   return (
     <Container>
-        {conteudo.tipoVideo === "inspecao" && (
+        {(conteudo.tipoVideo || destaque.tipoVideo) === "inspecao" && (
             <div className='w-100 align-items-center justify-content-center d-flex flex-column mb-5'>
                 <h3 className='text-white fw-bold w-100'>Recomendados</h3>
                 <Swiper 
@@ -65,7 +71,7 @@ const Recomendados = ({conteudo, destaque}) => {
             </div>
             
         )}
-        {conteudo.tipoVideo === "regulagem" && (
+        {(conteudo.tipoVideo || destaque.tipoVideo) === "regulagem" && (
             <div className='w-100 d-flex flex-column mb-5'>
             <h3 className='text-white fw-bold w-100'>Recomendados</h3>
             <Swiper 
@@ -100,7 +106,7 @@ const Recomendados = ({conteudo, destaque}) => {
             </Swiper>
         </div>
         )}
-        {conteudo.tipoVideo === "ajuste" && (
+        {(conteudo.tipoVideo || destaque.tipoVideo) === "ajuste" && (
             <div className='w-100 d-flex flex-column mb-5'>
             <h3 className='text-white fw-bold w-100'>Recomendados</h3>
             <Swiper 
@@ -135,7 +141,7 @@ const Recomendados = ({conteudo, destaque}) => {
             </Swiper>
         </div>
         )}
-        {conteudo.tipoVideo === "setup" && (
+        {(conteudo.tipoVideo || destaque.tipoVideo) === "setup" && (
             <div className='w-100 d-flex flex-column mb-5'>
             <h3 className='text-white fw-bold w-100'>Recomendados</h3>
             <Swiper 
