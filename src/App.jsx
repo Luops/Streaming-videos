@@ -42,6 +42,7 @@ import {
   Container, 
 } from 'react-bootstrap';
 
+import './App.css'
 
 
 function App() {
@@ -64,12 +65,12 @@ function App() {
   
 
   return (
-    <div>
+    <div className='FundoAzul'>
      <AuthProvider value={{user}}>
       <BrowserRouter>
         {user ? <Navbar/> : ""}
         {/*Validar as páginas, "Routes"*/}
-        <div>
+        <div className='FundoAzul'>
           <Routes>
             <Route path="/" element={user ? <Home /> : <Navigate to="/login"/>} />
             <Route path="/login" element={!user ? <Login /> : <Navigate to="/"/>}/>

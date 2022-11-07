@@ -48,7 +48,7 @@ const Conteudo = () => {
                     <H1 className='mb-1'>{conteudo.titulo}</H1>
                     <div className='d-flex gap-5 '>
                       <p className='text-uppercase text-primary d-flex fw-bold'>{conteudo.tipoVideo === "inspecao" && (<p>Inspeção</p>) || conteudo.tipoVideo}, {conteudo.estacao}</p>
-                      <p className='text-uppercase text-primary fw-bold gap-2 d-flex align-items-center'><FaHistory/>{conteudo.tempoVideo}</p>
+                      <p className='text-uppercase text-primary fw-bold gap-2 d-flex'><FaHistory className='mt-1'/>{conteudo.tempoVideo}</p>
                     </div>
                     <Paragrafo className="mt-5 text-justify">
                       {conteudo.descricao}

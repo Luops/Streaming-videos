@@ -13,6 +13,7 @@ import {
 export const ConteudoContainer = styled(StyledDiv)`
   padding-top: 100px;
   width: 100%;
+  background-color: white;
 `
 export const SectionDescricao = styled.section`
   padding: 0 15px;
@@ -34,7 +35,6 @@ export const SectionVideo = styled.section`
   background: -webkit-linear-gradient(90deg, rgba(16,15,70,1) 0%, rgba(3,42,107,1) 100%);
   background: linear-gradient(90deg, rgba(16,15,70,1) 0%, rgba(3,42,107,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#100f46",endColorstr="#032a6b",GradientType=1);
-  width: 100%;
   @media (max-width: 991px) {
     
   }
@@ -43,6 +43,8 @@ export const SectionVideo = styled.section`
 export const Imagem = styled.img`
   width: 320px;
   height: 450px;
+  -webkit-box-shadow: 1px 0px 35px -2px #000000; 
+  box-shadow: 1px 0px 35px -2px #000000;
 `
 
 export const DivDescricao = styled.div`

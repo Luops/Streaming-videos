@@ -67,7 +67,7 @@ const Login = () => {
       </StyledDivBackground>
       <StyledForm 
       onSubmit={handleSubmit}
-      className="d-flex flex-column align-items-center">
+      className="d-flex flex-column align-items-center bg-white">
         <StyledH4>Login</StyledH4>
         <p className="text-secondary opacity-75">Utilize seu E-mail e senha para entrar.</p>
         {/*Email */}
@@ -104,7 +104,7 @@ const Login = () => {
         </StyledLabel>
         {!loading &&<StyledButton>Entrar</StyledButton>}
         {loading &&<StyledButton>Entrando...</StyledButton>}
-        {error && <p className="">{error}</p>}
+        {error && <p className="text-danger">{error}</p>}
       </StyledForm>
     </StyledDivLogin>
   )

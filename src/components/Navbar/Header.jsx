@@ -141,11 +141,11 @@ const Header = () => {
                     }}>
                       BOB15
                   </StyledNavLink>
-                  <StyledNavLink to="/estacao/bob16" onClick={() => {
+                  <StyledNavLink to="/estacao/bob17" onClick={() => {
                     showDropDownEstacao(true);
                     showDropDownProcesso(true);
                     }}>
-                      BOB16
+                      BOB17
                   </StyledNavLink>
                   <StyledNavLink to="/estacao/mf02" onClick={() => {
                     showDropDownEstacao(true);
@@ -167,54 +167,6 @@ const Header = () => {
                   </StyledNavLink>
                 </StyledUl>
               </div>
-              {/* 
-              <StyledNavDropdown title="Processo" id="collasible-nav-dropdown"  className="d-block">
-                <NavDropdown.Item>
-                  <StyledNavLink to="/processo/bobinagem">
-                    Bobinagem
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/processo/montagemfinal">
-                    Montagem Final
-                  </StyledNavLink>
-                </NavDropdown.Item>
-              </StyledNavDropdown>
-              
-              <StyledNavDropdown title="Estações" id="collasible-nav-dropdown">
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/bob09">
-                    BOB09
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/bob15">
-                    BOB15
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/bob17">
-                    BOB17
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/mf02">
-                    MF02
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/mf03">
-                    MF03
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/mf05">
-                    MF05
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-              </StyledNavDropdown>
-              */}
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse id="responsive-navbar-nav" className="gap-4">
@@ -339,11 +291,11 @@ const Header = () => {
                     }}>
                       BOB15
                   </StyledNavLink>
-                  <StyledNavLink to="/estacao/bob16" onClick={() => {
+                  <StyledNavLink to="/estacao/bob17" onClick={() => {
                     showDropDownEstacao(true);
                     showDropDownProcesso(true);
                     }}>
-                      BOB16
+                      BOB17
                   </StyledNavLink>
                   <StyledNavLink to="/estacao/mf02" onClick={() => {
                     showDropDownEstacao(true);
@@ -365,54 +317,6 @@ const Header = () => {
                   </StyledNavLink>
                 </StyledUl>
               </div>
-              {/* 
-              <StyledNavDropdown title="Processo" id="collasible-nav-dropdown"  className="d-block">
-                <NavDropdown.Item>
-                  <StyledNavLink to="/processo/bobinagem">
-                    Bobinagem
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/processo/montagemfinal">
-                    Montagem Final
-                  </StyledNavLink>
-                </NavDropdown.Item>
-              </StyledNavDropdown>
-              
-              <StyledNavDropdown title="Estações" id="collasible-nav-dropdown">
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/bob09">
-                    BOB09
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/bob15">
-                    BOB15
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/bob17">
-                    BOB17
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/mf02">
-                    MF02
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/mf03">
-                    MF03
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <StyledNavLink to="/estacao/mf05">
-                    MF05
-                  </StyledNavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-              </StyledNavDropdown>
-              */}
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse id="responsive-navbar-nav" className="gap-4">

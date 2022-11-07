@@ -95,3 +95,7 @@ export const BotaoAtivado = styled.button`
     border: 1px solid white;
 `
 
+export const SemOpcoes = styled.div`
+    height: 250px;
+`
+

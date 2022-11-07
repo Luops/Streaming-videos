@@ -11,7 +11,8 @@ import {
   TxtVideo,
   Botoes,
   Botao,
-  BotaoAtivado
+  BotaoAtivado,
+  SemOpcoes
 } from "./styles"
 
 import { 
@@ -103,8 +104,19 @@ const Home = () => {
 
         </Botoes>
 
+        {!isInspecao && !isAjuste && !isRegulagem && !isSetup && (
+          <SemOpcoes className='mt-5'>
+            <p className='text-white fs-4 mt-5'>Selecione uma opção acima!</p>
+          </SemOpcoes>
+        )}
+
         {isInspecao && (
           <Videos className='justify-content-center gap-5 w-100 mt-5'>
+            {inspecao && inspecao.length === 0 && (
+              <SemOpcoes>
+                <p className='text-white fs-4 mt-5'>Não foram encontrados vídeos sobre inspeção!</p>
+              </SemOpcoes>
+            )}
             {inspecao && inspecao.map((inspecao) => (
               <DetalhesConteudo key={inspecao.id} conteudo={inspecao}/>
             ))}
@@ -113,6 +125,11 @@ const Home = () => {
 
         {isRegulagem && (
           <Videos className='justify-content-center gap-5 w-100 mt-5'>
+            {regulagem && regulagem.length === 0 && (
+              <SemOpcoes>
+                <p className='text-white fs-4 mt-5'>Não foram encontrados vídeos sobre regulagem!</p>
+              </SemOpcoes>
+            )}
             {regulagem && regulagem.map((regulagem) => (
               <DetalhesConteudo key={regulagem.id} conteudo={regulagem}/>
             ))}
@@ -121,14 +138,23 @@ const Home = () => {
 
         {isAjuste && (
           <Videos className='justify-content-center gap-5 w-100 mt-5'>
+            {ajuste && ajuste.length === 0 && (
+              <SemOpcoes>
+                <p className='text-white fs-4 mt-5'>Não foram encontrados vídeos sobre ajuste!</p>
+              </SemOpcoes>
+            )}
             {ajuste && ajuste.map((ajuste) => (
               <DetalhesConteudo key={ajuste.id} conteudo={ajuste}/>
             ))}
           </Videos>
         )}
-
         {isSetup && (
           <Videos className='justify-content-center gap-5 w-100 mt-5'>
+            {setup && setup.length === 0 && (
+              <SemOpcoes>
+                <p className='text-white fs-4 mt-5'>Não foram encontrados vídeos sobre setup!</p>
+              </SemOpcoes>
+            )}
             {setup && setup.map((setup) => (
               <DetalhesConteudo key={setup.id} conteudo={setup}/>
             ))}

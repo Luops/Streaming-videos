@@ -170,6 +170,7 @@ export const Conteudo = () => {
             <FaFileUpload/>
           </i>
           <p className="text-center">Selecione abaixo uma imagem em seu computador para ser a thumbnail do conteúdo.</p>
+          <p>Adicionar imagem no formato retrato!</p>
           <form onSubmit={handleUploadImagem}
           className='w-100 d-flex flex-column align-items-center justify-content-center my-0 gap-5'> 
             {!imagem && <StyledUpload className="btn btn-primary">
