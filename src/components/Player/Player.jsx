@@ -119,6 +119,8 @@ const Player = ({conteudo, destaque}) => {
         handleChangeSpeed
     } = usePlayerState($videoPlayer);
 
+    
+
 
   return (
     <div className={!fullScreen ? "" : "bg-black w-100 h-100"}>

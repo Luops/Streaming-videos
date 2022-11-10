@@ -18,6 +18,14 @@ export const Video = styled.video`
     cursor: pointer;
     width: 640px;
     height: 480px;
+    @media (min-width: 1600px) {
+        width: 704px;
+        height: 528px;
+    }
+    @media (min-width: 1900px) {
+        width: 774px;
+        height: 580px;
+    }
 `
 
 export const VideoFull = styled.video`
@@ -26,6 +34,14 @@ export const VideoFull = styled.video`
     cursor: pointer;
     width: 864px;
     height: 648px;
+    @media (min-width: 1600px) {
+        width: 1036px;
+        height: 777px;
+    }
+    @media (min-width: 1900px) {
+        width: 1243px;
+        height: 939px;
+    }
 `
 
 export const BarraPlayer = styled.div`
@@ -51,6 +67,14 @@ export const BarraPlayer = styled.div`
     }
     ${VideoFull}:hover + & {
         opacity: 1;
+    }
+    @media (min-width: 1600px) {
+        width: 704px;
+        bottom: 136px;
+    }
+    @media (min-width: 1900px) {
+        width: 774px;
+        bottom: 143px;
     }
 `
 
@@ -79,6 +103,14 @@ export const BarraPlayerFull = styled.div`
     }
     ${VideoFull}:hover + & {
         opacity: 1;
+    }
+    @media (min-width: 1600px) {
+        width: 1036px;
+        bottom: 171px;
+    }
+    @media (min-width: 1900px) {
+        width: 1243px;
+        bottom: 195px;
     }
 `
 
