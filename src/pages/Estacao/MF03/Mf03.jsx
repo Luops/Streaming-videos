@@ -23,7 +23,7 @@ export const Mf03 = () => {
       <TextoBob className='fs-5 text-muted w-100'>Montagem Final 03</TextoBob>
       <Videos>
         {mf03 && mf03.length === 0 &&(
-          <h2>Não foram encontrados vídeos desta estação! </h2>
+          <h2>Não foram encontrados vídeos específicos desta estação!</h2>
         )}
         {mf03 && mf03.map((mf03) => (
           <DetalhesConteudo key={mf03.id} conteudo={mf03}/>

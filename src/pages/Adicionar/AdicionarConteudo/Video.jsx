@@ -237,6 +237,8 @@ export const Conteudo = () => {
                   <option value="mf02">MF02</option>
                   <option value="mf03">MF03</option>
                   <option value="mf05">MF05</option>
+                  <option value="bobGeral">Bob em Geral</option>
+                  <option value="mfGeral">MF em Geral</option>
                 </select>
               </label>
             </div>

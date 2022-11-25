@@ -23,7 +23,7 @@ export const Bob17 = () => {
       <TextoBob className='fs-5 text-muted w-100'>Bobinagem 17</TextoBob>
       <Videos>
         {bob17 && bob17.length === 0 &&(
-          <h2>Não foram encontrados vídeos desta estação! </h2>
+          <h2>Não foram encontrados vídeos específicos desta estação! </h2>
         )}
         {bob17 && bob17.map((bob17) => (
           <DetalhesConteudo key={bob17.id} conteudo={bob17}/>

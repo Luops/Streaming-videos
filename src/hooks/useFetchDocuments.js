@@ -413,7 +413,8 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
                 let q;
 
                 
-                q = await query(collectionRef, where("estacao", "==", "bob09"), orderBy('createdAt', 'desc'))
+                q = await query(collectionRef, 
+                    where("estacao", "==", "bob09"),  orderBy('createdAt', 'desc'))
                 
 
                 await onSnapshot(q, (querySnapshot) => {
@@ -431,6 +432,8 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
 
                 setLoading(false);
             }
+
+            
         }
         loadData();
     }, [docCollection, documents, uid, cancelled]);
