@@ -68,8 +68,9 @@ function App() {
     <div className='FundoAzul'>
      <AuthProvider value={{user}}>
       <BrowserRouter>
+        {/*
         {user ? <Navbar/> : ""}
-        {/*Validar as páginas, "Routes"*/}
+        Validar as páginas, "Routes"
         <div className='FundoAzul'>
           <Routes>
             <Route path="/" element={user ? <Home /> : <Navigate to="/login"/>} />
@@ -89,6 +90,7 @@ function App() {
             <Route path="/adicionar/adicionarDestaque" element={user ? <AdicionarDestaque /> : <Navigate to="/login"/>} />
           </Routes>
         </div>
+        */}
         {/*{user ? <Footer/> : ""}*/}
       </BrowserRouter>
      </AuthProvider>
